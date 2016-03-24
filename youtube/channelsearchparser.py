@@ -1,6 +1,7 @@
 from youtube.baseparser import BaseSearchParser
 from youtube.channelsignature import ChannelSignature
 
+
 class ChannelSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-channel'
 
@@ -21,7 +22,7 @@ class ChannelSearchParser(BaseSearchParser):
             return self._html_parser.select(
                             '.yt-lockup-meta-info li')[1].string.split(' ')[0]
         except IndexError:
-            return '0' # no information means user has no uploaded videos
+            return '0'  # no information means user has no uploaded videos
 
     def _extract_thumbnail_url(self):
         return self._find_by_class('span', 'yt-thumb-simple').img['src']

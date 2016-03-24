@@ -1,21 +1,21 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 # To use a consistent encoding
-from codecs import open
+from codecs import open as open_
 from os import path
 
-here = path.abspath(path.dirname(__file__))
+HERE = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+with open_(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+    LONG_DESCRIPTION = f.read()
 
 with open('requirements.txt') as f:
-    required = f.read().splitlines()
+    REQUIRED = f.read().splitlines()
 
 setup(
     name='open-yt-api',
     version='0.0.1',
     description='open YouTube API library',
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     url='https://github.com/Glenpl/open-yt-api',
     author='Glenpl/Jakub Molinski',
     author_email='kubamolinski@gmail.com',
@@ -34,7 +34,7 @@ setup(
     ],
     keywords='open youtube api',
     packages=['source.youtube'],
-    install_requires=required,
+    install_requires=REQUIRED,
 )
 
-_author__ = 'glenpl'
+__author__ = 'glenpl'

@@ -6,6 +6,7 @@ from youtube.video import YoutubeVideo
 from youtube.playlist import YoutubePlaylist
 from youtube.channel import YoutubeChannel
 
+
 class YoutubeApi():
     _http_fetcher = None
 

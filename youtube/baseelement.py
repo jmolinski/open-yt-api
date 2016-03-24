@@ -1,6 +1,7 @@
 from youtube.errors import YoutubeApiConnectionError
 from youtube.errors import YoutubeInvalidIdError
 
+
 class BaseElement():
     _http_fetcher = None
     _signature = None
@@ -21,5 +22,5 @@ class BaseElement():
     def _get_page_content(self, url):
         try:
             return self._http_fetcher.fetch_page(url)
-        except: # pylint:disable=bare-except
+        except:  # pylint:disable=bare-except
             raise YoutubeApiConnectionError('Could not fetch page')

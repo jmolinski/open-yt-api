@@ -1,5 +1,6 @@
 from youtube.signature import BaseSignature
 
+
 class PlaylistSignature(BaseSignature):
     def __init__(self, playlist_id, name, playlist_length, author, # noqa
                  thumbnail, first_video_id): # noqa

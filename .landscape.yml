@@ -8,3 +8,6 @@ pylint:
     - no-self-use
     - too-few-public-methods
     - super-init-not-called
+pep8:
+  disable:
+    - E302

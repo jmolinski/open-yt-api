@@ -1,6 +1,7 @@
 import urllib.parse
 from youtube.errors import YoutubeApiConnectionError
 
+
 class BaseSearch():
     _http_fetcher = None
 
@@ -16,5 +17,5 @@ class BaseSearch():
     def _get_page_content(self, url):
         try:
             return self._http_fetcher.fetch_page(url)
-        except: # pylint:disable=bare-except
+        except:  # pylint:disable=bare-except
             raise YoutubeApiConnectionError('Could not fetch page')

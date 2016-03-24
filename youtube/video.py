@@ -1,6 +1,7 @@
 from youtube.videopageparser import VideoPageParser
 from youtube.baseelement import BaseElement
 
+
 class YoutubeVideo(BaseElement):
     _next_video = None
     _related_videos = None

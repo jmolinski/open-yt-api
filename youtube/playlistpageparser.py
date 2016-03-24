@@ -2,6 +2,7 @@ from youtube.baseparser import BaseParser
 from youtube.playlistsignature import PlaylistSignature
 from youtube.videosignature import VideoSignature
 
+
 class PlaylistPageParser(BaseParser):
     def get_signature(self, page_html):
         self._initialize_parser(repr(page_html))
@@ -31,7 +32,7 @@ class PlaylistPageParser(BaseParser):
         selector = '.pl-header-thumb img'
         return 'https:' + self._html_parser.select(selector)[0]['src']
 
-    def _extract_playlist_first_video_id(self): # pylint:disable=invalid-name
+    def _extract_playlist_first_video_id(self):  # pylint:disable=invalid-name
         link = self._html_parser.select('.pl-header-thumb a')[0]['href']
         return link.replace('?v=', ' ').replace('&list', ' ').split(' ')[1]
 
@@ -58,5 +59,5 @@ class PlaylistPageParser(BaseParser):
         selector = '.pl-video-owner a'
         return self._html_parser.select(selector)[0]['href'].split('/')[2]
 
-    def _extract_views(self): # views amount data is not present on the page
+    def _extract_views(self):  # views amount data is not present on the page
         return 'NOTSET'

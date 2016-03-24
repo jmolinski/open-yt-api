@@ -1,6 +1,7 @@
 from youtube.search import BaseSearch
 from youtube.playlistsearchparser import PlaylistSearchParser
 
+
 class PlaylistSearch(BaseSearch):
     _base_search_url = 'https://www.youtube.com/results?sp=EgIQAw%253D%253D&q='
 

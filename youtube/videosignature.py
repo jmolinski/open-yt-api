@@ -1,5 +1,6 @@
 from youtube.signature import BaseSignature
 
+
 class VideoSignature(BaseSignature):
     def __init__(self, video_id, title, author, views, length): # noqa
         self._validate_not_empty_str(video_id)
