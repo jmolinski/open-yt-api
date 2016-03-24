@@ -1,0 +1,10 @@
+strictness: veryhigh
+max-line-length: 100
+autodetect: yes
+python-targets:
+    - 3
+pylint:
+  disable:
+    - no-self-use
+    - too-few-public-methods
+    - super-init-not-called
