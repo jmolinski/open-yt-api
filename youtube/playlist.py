@@ -1,5 +1,5 @@
-from source.baseelement import BaseElement
-from source.playlistpageparser import PlaylistPageParser
+from youtube.baseelement import BaseElement
+from youtube.playlistpageparser import PlaylistPageParser
 
 class YoutubePlaylist(BaseElement):
     _videos = None

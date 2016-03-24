@@ -1,5 +1,5 @@
-from source.baseparser import BaseSearchParser
-from source.videosignature import VideoSignature
+from youtube.baseparser import BaseSearchParser
+from youtube.videosignature import VideoSignature
 
 class VideoSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-video'

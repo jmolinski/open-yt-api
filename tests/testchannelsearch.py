@@ -1,6 +1,6 @@
 import unittest
-from source.api import YoutubeApi
-from source.channelsignature import ChannelSignature
+from youtube.api import YoutubeApi
+from youtube.channelsignature import ChannelSignature
 from test_tools import FakeFetcher, read_in_file
 
 class YoutubeApiChannelSearchTest(unittest.TestCase):

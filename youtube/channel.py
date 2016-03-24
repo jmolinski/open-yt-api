@@ -1,4 +1,4 @@
-from source.baseelement import BaseElement
+from youtube.baseelement import BaseElement
 
 class YoutubeChannel(BaseElement):
     pass

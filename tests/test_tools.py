@@ -1,4 +1,4 @@
-from source.http_fetcher import CouldntFetchContentError
+from youtube.http_fetcher import CouldntFetchContentError
 
 class FakeFetcher():
     def __init__(self, page_source):

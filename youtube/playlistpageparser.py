@@ -1,6 +1,6 @@
-from source.baseparser import BaseParser
-from source.playlistsignature import PlaylistSignature
-from source.videosignature import VideoSignature
+from youtube.baseparser import BaseParser
+from youtube.playlistsignature import PlaylistSignature
+from youtube.videosignature import VideoSignature
 
 class PlaylistPageParser(BaseParser):
     def get_signature(self, page_html):

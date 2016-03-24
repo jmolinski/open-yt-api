@@ -1,4 +1,4 @@
-from source.signature import BaseSignature
+from youtube.signature import BaseSignature
 
 class VideoSignature(BaseSignature):
     def __init__(self, video_id, title, author, views, length): # noqa

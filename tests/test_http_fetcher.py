@@ -1,6 +1,6 @@
 import unittest
-from source.http_fetcher import UrllibPageFetcher
-from source.http_fetcher import CouldntFetchContentError
+from youtube.http_fetcher import UrllibPageFetcher
+from youtube.http_fetcher import CouldntFetchContentError
 
 class HttpFetcherTest(unittest.TestCase):
     _fetcher = UrllibPageFetcher()

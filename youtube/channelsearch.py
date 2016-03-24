@@ -1,5 +1,5 @@
-from source.search import BaseSearch
-from source.channelsearchparser import ChannelSearchParser
+from youtube.search import BaseSearch
+from youtube.channelsearchparser import ChannelSearchParser
 
 class ChannelSearch(BaseSearch):
     _base_search_url = 'https://www.youtube.com/results?sp=EgIQAg%253D%253D&q='

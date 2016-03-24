@@ -1,5 +1,5 @@
 import urllib.parse
-from source.errors import YoutubeApiConnectionError
+from youtube.errors import YoutubeApiConnectionError
 
 class BaseSearch():
     _http_fetcher = None

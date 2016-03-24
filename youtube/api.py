@@ -1,10 +1,10 @@
-from source.http_fetcher import UrllibPageFetcher
-from source.videosearch import VideoSearch
-from source.channelsearch import ChannelSearch
-from source.playlistsearch import PlaylistSearch
-from source.video import YoutubeVideo
-from source.playlist import YoutubePlaylist
-from source.channel import YoutubeChannel
+from youtube.http_fetcher import UrllibPageFetcher
+from youtube.videosearch import VideoSearch
+from youtube.channelsearch import ChannelSearch
+from youtube.playlistsearch import PlaylistSearch
+from youtube.video import YoutubeVideo
+from youtube.playlist import YoutubePlaylist
+from youtube.channel import YoutubeChannel
 
 class YoutubeApi():
     _http_fetcher = None

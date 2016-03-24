@@ -1,5 +1,5 @@
-from source.errors import YoutubeApiConnectionError
-from source.errors import YoutubeInvalidIdError
+from youtube.errors import YoutubeApiConnectionError
+from youtube.errors import YoutubeInvalidIdError
 
 class BaseElement():
     _http_fetcher = None

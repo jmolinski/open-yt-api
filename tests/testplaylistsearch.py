@@ -1,6 +1,6 @@
 import unittest
-from source.api import YoutubeApi
-from source.playlistsignature import PlaylistSignature
+from youtube.api import YoutubeApi
+from youtube.playlistsignature import PlaylistSignature
 from test_tools import FakeFetcher, read_in_file
 
 class YoutubeApiPlaylistSearchTest(unittest.TestCase):
