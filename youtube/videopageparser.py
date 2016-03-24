@@ -67,4 +67,4 @@ class VideoPageParser(BaseParser):
         hrs = int(mins) // 60
         mins = str(int(mins) - 60 * hrs)
         return ':'.join(([str(hrs)] if not str(hrs) == '0' else []) +
-                         [mins if not str(mins) == '0' else '00'] + [secs])
+                        [mins if not str(mins) == '0' else '00'] + [secs])

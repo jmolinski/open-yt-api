@@ -6,9 +6,11 @@ class ChannelSearchParser(BaseSearchParser):
 
     def _parse_single_result(self, search_result):
         self._initialize_parser(repr(search_result))
-        return ChannelSignature(self._extract_id(), self._extract_name(),
-                self._extract_videos_amount(), self._extract_subscriptions(),
-                self._extract_thumbnail_url())
+        return ChannelSignature(self._extract_id(),
+                                self._extract_name(),
+                                self._extract_videos_amount(),
+                                self._extract_subscriptions(),
+                                self._extract_thumbnail_url())
 
     def _extract_id(self):
         return self._find_by_class('a', 'yt-uix-tile-link')['data-ytid']
