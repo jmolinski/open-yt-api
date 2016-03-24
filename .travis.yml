@@ -8,6 +8,6 @@ install:
 # command to run tests
 script:
   - python3 -m unittest discover tests
-  - coverage3 run --include=source* -m unittest discover tests
+  - coverage3 run --include=youtube* -m unittest discover tests
 after_success:
   coveralls

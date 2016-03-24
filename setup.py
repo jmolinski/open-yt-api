@@ -1,4 +1,3 @@
-# Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
@@ -15,7 +14,7 @@ with open('requirements.txt') as f:
 setup(
     name='open-yt-api',
     version='0.0.1',
-    description='A sample Python project',
+    description='open YouTube API library',
     long_description=long_description,
     url='https://github.com/Glenpl/open-yt-api',
     author='Glenpl/Jakub Molinski',
