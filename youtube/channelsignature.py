@@ -1,9 +1,7 @@
 from youtube.signature import BaseSignature
 
-
 class ChannelSignature(BaseSignature):
-    def __init__(self, channel_id, name, videos_amount, subscriptions, # noqa
-                 thumbnail): # noqa
+    def __init__(self, channel_id, name, videos_amount, subscriptions, thumbnail):
         self._validate_not_empty_str(channel_id)
         self._channel_id = channel_id
         self._validate_not_empty_str(name)

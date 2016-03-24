@@ -1,7 +1,6 @@
 from youtube.baseparser import BaseSearchParser
 from youtube.videosignature import VideoSignature
 
-
 class VideoSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-video'
 
@@ -25,5 +24,4 @@ class VideoSearchParser(BaseSearchParser):
 
     def _extract_views(self):
         views_ul = self._find_by_class('ul', 'yt-lockup-meta-info')
-        return self._remove_non_breaking_spaces(
-                                views_ul.find_all('li')[1].string.split(' ')[0])
+        return self._remove_non_breaking_spaces(views_ul.find_all('li')[1].string.split(' ')[0])

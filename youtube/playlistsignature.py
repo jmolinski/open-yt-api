@@ -1,9 +1,7 @@
 from youtube.signature import BaseSignature
 
-
 class PlaylistSignature(BaseSignature):
-    def __init__(self, playlist_id, name, playlist_length, author, # noqa
-                 thumbnail, first_video_id): # noqa
+    def __init__(self, playlist_id, name, playlist_length, author, thumbnail, first_video_id):
         self._validate_not_empty_str(playlist_id)
         self._playlist_id = playlist_id
         self._validate_not_empty_str(name)
@@ -39,6 +37,4 @@ class PlaylistSignature(BaseSignature):
         return self._first_video_id
 
     def get_first_video_url(self):
-        return 'https://www.youtube.com/watch?v={0}&list={1}'.format(
-                                                        self._first_video_id,
-                                                        self._playlist_id)
+        return 'https://www.youtube.com/watch?v={0}&list={1}'.format(self._first_video_id, self._playlist_id)

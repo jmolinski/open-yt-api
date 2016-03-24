@@ -1,5 +1,5 @@
 strictness: veryhigh
-max-line-length: 100
+max-line-length: 120
 autodetect: yes
 python-targets:
     - 3

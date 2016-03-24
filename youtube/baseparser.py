@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 
-
 class BaseParser():
     _html_parser = None  # beautifulsoup parser
 
@@ -17,9 +16,7 @@ class BaseParser():
         self._initialize_parser(html_source)
         return self._html_parser.find_all(tag, class_=class_name)
 
-
 class BaseSearchParser(BaseParser):
     def parse(self, html_source):
-        search_results = self._extract_results(html_source,
-                                               self._tile_class_name)
+        search_results = self._extract_results(html_source, self._tile_class_name)
         return [self._parse_single_result(result) for result in search_results]

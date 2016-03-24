@@ -1,7 +1,6 @@
 from youtube.baseparser import BaseSearchParser
 from youtube.playlistsignature import PlaylistSignature
 
-
 class PlaylistSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-playlist'
 
@@ -21,17 +20,14 @@ class PlaylistSearchParser(BaseSearchParser):
         return str(self._find_by_class('a', 'yt-uix-tile-link').string)
 
     def _extract_playlist_length(self):
-        return str(self._find_by_class('span',
-                                       'formatted-video-count-label').b.string)
+        return str(self._find_by_class('span', 'formatted-video-count-label').b.string)
 
     def _extract_thumbnail_url(self):
-        return 'https:' + self._find_by_class('span',
-                                                'yt-thumb-simple').img['src']
+        return 'https:' + self._find_by_class('span', 'yt-thumb-simple').img['src']
 
     def _extract_author(self):
         return str(self._find_by_class('a', 'g-hovercard').string)
 
     def _extract_first_video_id(self):
-        link = self._find_by_class('ol',
-                                   'yt-lockup-playlist-items').li.a['href']
+        link = self._find_by_class('ol', 'yt-lockup-playlist-items').li.a['href']
         return link.replace('&list=', ' ').replace('tch?v=', ' ').split(' ')[1]
