@@ -1,11 +1,9 @@
-from youtube.errors import YoutubeApiConnectionError
-from youtube.errors import YoutubeInvalidIdError
+from youtube.errors import YoutubeApiConnectionError, YoutubeInvalidIdError
 
 class BaseElement():
     _http_fetcher = None
     _signature = None
     _parser = None
-    _signature = None
 
     def __init__(self, http_fetcher, element_id, parser=None):
         self._http_fetcher = http_fetcher

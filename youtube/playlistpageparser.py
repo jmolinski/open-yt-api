@@ -36,8 +36,10 @@ class PlaylistPageParser(BaseParser):
 
     def _parse_single_video(self, video):
         self._initialize_parser(repr(video))
-        return VideoSignature(self._extract_id(), self._extract_title(),
-                              self._extract_author(), self._extract_views(),
+        return VideoSignature(self._extract_id(),
+                              self._extract_title(),
+                              self._extract_author(),
+                              self._extract_views(),
                               self._extract_length())
 
     def _extract_length(self):
