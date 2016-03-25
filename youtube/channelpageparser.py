@@ -3,6 +3,8 @@ from youtube.channelsignature import ChannelSignature
 from youtube.videosignature import VideoSignature
 
 class ChannelPageParser(BaseParser):
+    _author = None
+    
     def get_videos(self, page_html):
         self._initialize_parser(repr(page_html))
         self._author = self._extract_channel_id()
