@@ -14,7 +14,10 @@ class ChannelSignature(BaseSignature):
         self._thumbnail = thumbnail
 
     def get_url(self):
-        return 'https://www.youtube.com/channel/' + self._channel_id
+        if self._channel_id[:2] == 'UC':
+            return 'https://www.youtube.com/channel/' + self._channel_id
+        else:
+            return 'https://www.youtube.com/user/' + self._channel_id
 
     def get_id(self):
         return self._channel_id

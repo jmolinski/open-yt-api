@@ -4,7 +4,7 @@ from youtube.videosignature import VideoSignature
 
 class ChannelPageParser(BaseParser):
     _author = None
-    
+
     def get_videos(self, page_html):
         self._initialize_parser(repr(page_html))
         self._author = self._extract_channel_id()
@@ -28,8 +28,7 @@ class ChannelPageParser(BaseParser):
         return self._html_parser.div['data-context-item-id']
 
     def _extract_views(self):
-        views_ul = self._find_by_class('ul', 'yt-lockup-meta-info')
-        return self._remove_non_breaking_spaces(views_ul.find_all('li')[1].string.split(' ')[0])
+        return ''.join([x for x in str(self._html_parser.select('.yt-lockup-meta-info li')[1].string) if '9'>=x>='0'])
 
     def get_signature(self, page_html):
         self._initialize_parser(repr(page_html))
@@ -52,4 +51,4 @@ class ChannelPageParser(BaseParser):
         return self._html_parser.select('.channel-header-profile-image')[0]['src']
 
     def _extract_channel_subscriptions(self):
-        return self._remove_non_breaking_spaces(str(self._html_parser.select('.about-stats span b')[0].string))
+        return ''.join([x for x in str(self._html_parser.select('.about-stats span b')[0].string) if '9'>=x>='0'])
