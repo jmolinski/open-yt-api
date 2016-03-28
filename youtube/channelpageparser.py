@@ -28,7 +28,7 @@ class ChannelPageParser(BaseParser):
         return self._html_parser.div['data-context-item-id']
 
     def _extract_views(self):
-        return ''.join([x for x in str(self._html_parser.select('.yt-lockup-meta-info li')[1].string) if '9'>=x>='0'])
+        return ''.join([x for x in self._html_parser.select('.yt-lockup-meta-info li')[1].string if self._is_digit(x)])
 
     def get_signature(self, page_html):
         self._initialize_parser(repr(page_html))
@@ -51,4 +51,7 @@ class ChannelPageParser(BaseParser):
         return self._html_parser.select('.channel-header-profile-image')[0]['src']
 
     def _extract_channel_subscriptions(self):
-        return ''.join([x for x in str(self._html_parser.select('.about-stats span b')[0].string) if '9'>=x>='0'])
+        return ''.join([x for x in self._html_parser.select('.about-stats span b')[0].string if self._is_digit(x)])
+
+    def _is_digit(self, digit):
+        return '9' >= digit >= '0'
