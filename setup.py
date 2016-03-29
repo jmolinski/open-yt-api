@@ -5,15 +5,12 @@ from os import path
 
 HERE = path.abspath(path.dirname(__file__))
 
-with open('requirements.txt') as f:
-    REQUIRED = f.read().splitlines()
-
 setup(
     name='open-yt-api',
-    version='1.0.0',
+    version='1.0.1',
     description='Open YouTube API library',
     url='https://github.com/Glenpl/open-yt-api',
-    download_url = 'https://github.com/Glenpl/open-yt-api/tarball/1.0.0'
+    download_url='https://github.com/Glenpl/open-yt-api/tarball/1.0.0',
     author='Glenpl/Jakub Molinski',
     author_email='kubamolinski@gmail.com',
     license='MIT',
@@ -27,8 +24,8 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     keywords='open youtube api',
-    packages=['source.youtube'],
-    install_requires=REQUIRED,
+    packages=['youtube'],
+    install_requires=['beautifulsoup4', 'requests', 'docopt']
 )
 
 __author__ = 'glenpl'
