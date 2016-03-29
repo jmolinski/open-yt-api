@@ -4,11 +4,11 @@ from os import path
 HERE = path.abspath(path.dirname(__file__))
 
 setup(
-    name='open-yt-api',
-    version='1.0.2',
+    name='open_yt_api',
+    version='1.0.3',
     description='Open YouTube API library',
-    url='https://github.com/Glenpl/open-yt-api',
-    download_url='https://github.com/Glenpl/open-yt-api/tarball/1.0.0',
+    url='https://github.com/Glenpl/open_yt_api',
+    download_url='https://github.com/Glenpl/open_yt_api/tarball/1.0.3',
     author='Glenpl/Jakub Molinski',
     author_email='kubamolinski@gmail.com',
     license='MIT',
