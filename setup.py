@@ -1,13 +1,11 @@
 from setuptools import setup
-# To use a consistent encoding
-from codecs import open as open_
 from os import path
 
 HERE = path.abspath(path.dirname(__file__))
 
 setup(
     name='open-yt-api',
-    version='1.0.1',
+    version='1.0.2',
     description='Open YouTube API library',
     url='https://github.com/Glenpl/open-yt-api',
     download_url='https://github.com/Glenpl/open-yt-api/tarball/1.0.0',
@@ -25,7 +23,7 @@ setup(
     ],
     keywords='open youtube api',
     packages=['youtube'],
-    install_requires=['beautifulsoup4', 'requests', 'docopt']
+    install_requires=['beautifulsoup4', 'requests']
 )
 
 __author__ = 'glenpl'
