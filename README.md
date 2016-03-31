@@ -25,6 +25,30 @@ found_playlists = YoutubeApi().search_playlists('lana del rey')
 print(found_items)
 ```
 
+Documentation
+--------------------
+The main API class is YoutubeApi, which consists of 7 methods:
+```
+constructor(http_fetcher=None)
+
+search(search_string: str) -> List of VideoSignature, ChannelSignature and PlaylistSignature
+search_videos(search_string: str) -> List of VideoSignature
+search_channels(search_string: str) -> List of ChannelSignature
+search_playlists(search_string: str) -> List of PlaylistSignature
+get_video(video_id: str) -> YoutubeVideo object
+get_playlist(playlist_id: str) -> YoutubeChannel object
+get_channel(channel_id: str) -> YoutubePlaylist object
+```
+YoutubeApi constructor takes an optional http_fetcher argument.
+Object passed as http_fetcher is used to fetch www page source - it has to implement such an interface:
+```
+class Fetcher():
+    def __init__(): pass  # default constructor
+    def fetch_page(url): pass  # returns utf-8 decoded page source
+```
+It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
+
+---
 License
 --------------------
 MIT license.
