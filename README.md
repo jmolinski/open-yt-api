@@ -41,7 +41,7 @@ get_channel(channel_id: str) -> YoutubePlaylist object
 ```
 YoutubeApi constructor takes an optional http_fetcher argument.
 Object passed as http_fetcher is used to fetch www page source - it has to implement such an interface:
-```
+```python
 class Fetcher():
     def __init__(): pass  # default constructor
     def fetch_page(url): pass  # returns utf-8 decoded page source
@@ -49,6 +49,45 @@ class Fetcher():
 It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
 
 ---
+
+#####VideoSignature
+It's a value object. 
+```
+get_url() -> str
+get_id() -> str
+get_length() -> str
+get_title() -> str
+get_author() -> str
+get_views() -> str
+get_thumbnail_url() -> str
+```
+---
+
+#####ChannelSignature
+It's a value object. 
+```
+get_url() -> str
+get_id() -> str
+get_name() -> str
+get_videos_amount() -> str
+get_subscriptions() -> str
+get_thumbnail_url() -> str
+```
+---
+
+#####PlaylistSignature
+It's a value object. 
+```
+get_url() -> str
+get_id() -> str
+get_name() -> str
+get_length() -> str
+get_thumbnail_url() -> str
+get_author() -> str
+get_first_video_id() -> str
+get_first_video_url() -> str
+```
+
 License
 --------------------
 MIT license.
