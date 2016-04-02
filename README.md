@@ -51,7 +51,7 @@ It's probably best to just let the YoutubeApi use it's default http_fetcher - th
 ---
 
 #####VideoSignature
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```
@@ -67,7 +67,7 @@ get_thumbnail_url() -> str
 ---
 
 #####ChannelSignature
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```
@@ -82,7 +82,7 @@ get_thumbnail_url() -> str
 ---
 
 #####PlaylistSignature
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```
@@ -99,10 +99,11 @@ get_first_video_url() -> str
 ---
 
 #####YoutubeVideo
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```
+get_url() -> str
 get_length() -> str
 get_length_in_seconds() -> int
 get_author() -> str
@@ -117,7 +118,7 @@ get_related_videos() -> List of VideoSignature
 ---
 
 #####YoutubeChannel
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```
@@ -133,7 +134,7 @@ get_uploaded_videos() -> List of VideoSignature
 ---
 
 #####YoutubePlaylist
-It's a value object. 
+It's a value object.
 May throw exceptions during construction.
 Member methods guaranteed not to throw exceptions.
 ```

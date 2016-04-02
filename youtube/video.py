@@ -18,6 +18,9 @@ class YoutubeVideo(BaseElement):
         self._next_video = self._parser.get_next_video(page_html)
         self._related_videos = self._parser.parse_related_videos(page_html)
 
+    def get_url(self):
+        return self._signature.get_url()
+
     def get_length(self):
         return self._signature.get_length()
 
@@ -43,7 +46,7 @@ class YoutubeVideo(BaseElement):
         return self._next_video
 
     def get_related_videos(self):
-        return self._related_videos
+        return self._related_videos[:]
 
     def get_thumbnail_url(self):
         return self._signature.get_thumbnail_url()

@@ -11,6 +11,7 @@ class YoutubeApiGetVideoTest(unittest.TestCase):
         html_code = read_in_file('tests/htmls/video_sample_source.txt')
         video = YoutubeApi(FakeFetcher(html_code)).get_video('nVjsGKrE6E8')
         self.assertEqual(video.get_id(), 'nVjsGKrE6E8')
+        self.assertEqual(video.get_url(), 'https://www.youtube.com/watch?v=nVjsGKrE6E8')
         self.assertEqual(video.get_title(), 'Lana Del Rey - Summertime Sadness')
         self.assertEqual(video.get_author(), 'UCqk3CdGN_j8IR9z4uBbVPSg')
         self.assertEqual(video.get_views(), '247990936')
