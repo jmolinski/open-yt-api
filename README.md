@@ -52,6 +52,8 @@ It's probably best to just let the YoutubeApi use it's default http_fetcher - th
 
 #####VideoSignature
 It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
 ```
 get_url() -> str
 get_id() -> str
@@ -61,10 +63,13 @@ get_author() -> str
 get_views() -> str
 get_thumbnail_url() -> str
 ```
+
 ---
 
 #####ChannelSignature
 It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
 ```
 get_url() -> str
 get_id() -> str
@@ -73,10 +78,13 @@ get_videos_amount() -> str
 get_subscriptions() -> str
 get_thumbnail_url() -> str
 ```
+
 ---
 
 #####PlaylistSignature
 It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
 ```
 get_url() -> str
 get_id() -> str
@@ -86,6 +94,57 @@ get_thumbnail_url() -> str
 get_author() -> str
 get_first_video_id() -> str
 get_first_video_url() -> str
+```
+
+---
+
+#####YoutubeVideo
+It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
+```
+get_length() -> str
+get_length_in_seconds() -> int
+get_author() -> str
+get_title() -> str
+get_id() -> str
+get_views() -> str
+get_thumbnail_url() -> str
+get_next_video() -> VideoSignature
+get_related_videos() -> List of VideoSignature
+```
+
+---
+
+#####YoutubeChannel
+It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
+```
+get_url() -> str
+get_id() -> str
+get_name() -> str
+get_videos_amount() -> str
+get_subscriptions() -> str
+get_thumbnail_url() -> str
+get_uploaded_videos() -> List of VideoSignature
+```
+
+---
+
+#####YoutubePlaylist
+It's a value object. 
+May throw exceptions during construction.
+Member methods guaranteed not to throw exceptions.
+```
+get_url() -> str
+get_id() -> str
+get_name() -> str
+get_author() -> str
+get_length() -> str
+get_thumbnail_url() -> str
+get_video(index: int) -> VideoSignature
+get_videos() -> List of VideoSignature
 ```
 
 License
