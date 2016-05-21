@@ -7,45 +7,9 @@ from youtube.video import YoutubeVideo
 from youtube.playlist import YoutubePlaylist
 from youtube.channel import YoutubeChannel
 from youtube.cache import _YoutubeCache
-from youtube.errors import YoutubeApiRandomException
+from youtube.tools import search_wrapper, get_object_wrapper
 
 __all__ = ['YoutubeApi']
-
-# theses 2 functions manage caching
-def _search_wrapper(search_type, search_string, nocache, actual_search):
-    if nocache:
-        return _exception_handling_wrapper(actual_search)
-
-    cached = _YoutubeCache.get_search_result(search_type, search_string)
-    if cached:
-        return cached
-    else:
-        results = _exception_handling_wrapper(actual_search)  # executes lambda
-        _YoutubeCache.add_search_result(search_type, search_string, results)
-        return results
-
-def _get_object_wrapper(object_id, nocache, actual_search):
-    if nocache:
-        return actual_search()
-
-    cached = _YoutubeCache.get_object(object_id)
-    if cached:
-        return cached
-    else:
-        result = actual_search()  # executes lambda
-        _YoutubeCache.add_object(object_id, result)
-        return result
-
-# if there was an random exception caused by eg. damaged html - repeat query
-def _exception_handling_wrapper(search_function, max_tries=3):
-    while True:
-        try:
-            return search_function()
-        except (LookupError, ValueError, TypeError) as err:
-            if max_tries == 1:
-                raise YoutubeApiRandomException(err)
-            else:
-                max_tries -= 1
 
 
 class YoutubeApi():
@@ -57,32 +21,32 @@ class YoutubeApi():
         self._nocache = nocache
 
     def search(self, search_string):
-        return _search_wrapper('MixedSearch', search_string, self._nocache,
-                lambda: MixedSearch(self._http_fetcher).search(search_string))
+        return search_wrapper('MixedSearch', search_string, self._nocache,
+                    lambda: MixedSearch(self._http_fetcher).search(search_string))
 
     def search_videos(self, search_string):
-        return _search_wrapper('VideoSearch', search_string, self._nocache,
-                lambda: VideoSearch(self._http_fetcher).search(search_string))
+        return search_wrapper('VideoSearch', search_string, self._nocache,
+                    lambda: VideoSearch(self._http_fetcher).search(search_string))
 
     def search_channels(self, search_string):
-        return _search_wrapper('ChannelSearch', search_string, self._nocache,
-                lambda: ChannelSearch(self._http_fetcher).search(search_string))
+        return search_wrapper('ChannelSearch', search_string, self._nocache,
+                    lambda: ChannelSearch(self._http_fetcher).search(search_string))
 
     def search_playlists(self, search_string):
-        return _search_wrapper('PlaylistSearch', search_string, self._nocache,
-                lambda: PlaylistSearch(self._http_fetcher).search(search_string))
+        return search_wrapper('PlaylistSearch', search_string, self._nocache,
+                    lambda: PlaylistSearch(self._http_fetcher).search(search_string))
 
     def get_video(self, video_id):
-        return _get_object_wrapper(video_id, self._nocache,
-                lambda: YoutubeVideo(self._http_fetcher, video_id))
+        return get_object_wrapper(video_id, self._nocache,
+                    lambda: YoutubeVideo(self._http_fetcher, video_id))
 
     def get_playlist(self, playlist_id):
-        return _get_object_wrapper(playlist_id, self._nocache,
-                lambda: YoutubePlaylist(self._http_fetcher, playlist_id))
+        return get_object_wrapper(playlist_id, self._nocache,
+                    lambda: YoutubePlaylist(self._http_fetcher, playlist_id))
 
     def get_channel(self, channel_id):
-        return _get_object_wrapper(channel_id, self._nocache,
-                lambda: YoutubeChannel(self._http_fetcher, channel_id))
+        return get_object_wrapper(channel_id, self._nocache,
+                    lambda: YoutubeChannel(self._http_fetcher, channel_id))
 
     def clear_cache(self):
         _YoutubeCache.clear_cache()
