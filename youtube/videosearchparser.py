@@ -24,4 +24,5 @@ class VideoSearchParser(BaseSearchParser):
 
     def _extract_views(self):
         views_ul = self._find_by_class('ul', 'yt-lockup-meta-info')
-        return self._remove_non_breaking_spaces(views_ul.find_all('li')[1].string.split(' ')[0])
+        li_lst = views_ul.find_all('li')
+        return self._remove_non_breaking_spaces(li_lst[1].string.split(' ')[0]) if len(li_lst) > 1 else -1
