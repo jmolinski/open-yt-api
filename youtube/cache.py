@@ -7,7 +7,7 @@ class _YoutubeCache():
     def get_search_result(search_type, query):
         try:
             return _YoutubeCache._search_results.get(search_type).get(query)
-        except AttributeError: # None.get(query)
+        except AttributeError:  # None.get(query)
             return None
 
     @staticmethod

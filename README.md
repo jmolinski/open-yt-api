@@ -48,7 +48,7 @@ class Fetcher():
     def fetch_page(url): pass  # returns utf-8 decoded page source
 ```
 It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
-Important none: if you want to supply your own http_fetcher which doesn't make real http calls, it's best to set nocache to True.
+Important note: if you want to supply your own http_fetcher which doesn't make real http calls, it's best to set nocache to True.
 
 ---
 

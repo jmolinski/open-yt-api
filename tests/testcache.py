@@ -8,14 +8,14 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         # actual http request and parsing
         start = timer()
-        videos_a = api.search('Lana')
+        videos = api.search('Lana')
         videos = api.search('Lana del')
         videos = api.search('Lana del rey')
         time1 = timer() - start
 
         # get cached version
         start = timer()
-        videos_f = api.search('Lana')
+        videos = api.search('Lana')
         videos = api.search('Lana del')
         videos = api.search('Lana del rey')
         time2 = timer() - start
