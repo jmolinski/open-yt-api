@@ -16,13 +16,13 @@ def search_wrapper(search_type, search_string, nocache, actual_search):
 
 def get_object_wrapper(object_id, nocache, actual_search):
     if nocache:
-        return actual_search()
+        return _exception_handling_wrapper(actual_search)
 
     cached = _YoutubeCache.get_object(object_id)
     if cached:
         return cached
     else:
-        result = actual_search()  # executes lambda
+        result = _exception_handling_wrapper(actual_search)  # executes lambda
         _YoutubeCache.add_object(object_id, result)
         return result
 
