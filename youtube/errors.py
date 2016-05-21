@@ -9,3 +9,7 @@ class YoutubeApiConnectionError(YoutubeApiError):
 class YoutubeInvalidIdError(YoutubeApiError):
     def __init__(self, parent_error=None):
         self.parent_error = parent_error
+
+class YoutubeApiRandomException(YoutubeApiError):
+    def __init__(self, parent_error):
+        self.parent_error = parent_error
