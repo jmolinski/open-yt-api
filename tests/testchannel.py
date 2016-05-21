@@ -7,7 +7,7 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_api_get_channel_signature(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2)).get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('LanaDelReyVEVO')
 
         self.assertEqual(channel.get_id(), 'LanaDelReyVEVO')
         self.assertEqual(channel.get_url(), 'https://www.youtube.com/user/LanaDelReyVEVO')
@@ -21,7 +21,7 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_api_get_channel_videos(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2)).get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('LanaDelReyVEVO')
         signature = VideoSignature('JRWox-i6aAk', 'Lana Del Rey - Blue Jeans',
                                     'LanaDelReyVEVO', '149473022', '4:21')
         self.assertTrue(signature in channel.get_uploaded_videos())
@@ -29,14 +29,14 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
             self.assertIsInstance(video, VideoSignature)
 
     def test_real_get_channel_about(self):
-        channel = YoutubeApi().get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(nocache=True).get_channel('LanaDelReyVEVO')
         self.assertEqual(channel.get_id(), 'LanaDelReyVEVO')
         self.assertEqual(channel.get_url(), 'https://www.youtube.com/user/LanaDelReyVEVO')
         self.assertEqual(channel.get_name(), 'LanaDelReyVEVO')
         self.assertTrue(int(channel.get_subscriptions()) >= 3983841)
 
     def test_real_get_channel_videos(self):
-        channel = YoutubeApi().get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(nocache=True).get_channel('LanaDelReyVEVO')
         blue_jeans = [x for x in channel.get_uploaded_videos() if x.get_id() == 'JRWox-i6aAk']
         self.assertEqual(len(blue_jeans), 1)
         blue_jeans = blue_jeans[0]
@@ -51,5 +51,5 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_youtubechannel_constructor(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2)).get_channel('           ')
+        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('           ')
         self.assertTrue(channel is not None)

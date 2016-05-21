@@ -6,13 +6,13 @@ from test_tools import FakeFetcher, read_in_file
 class YoutubeApiPlaylistSearchTest(unittest.TestCase):
     def test_search_no_results(self):
         html_code = read_in_file('tests/htmls/search_no_results.txt')
-        found_results = YoutubeApi(FakeFetcher(html_code)).search_playlists('')
+        found_results = YoutubeApi(FakeFetcher(html_code), True).search_playlists('')
         self.assertEqual(len(found_results), 0)
 
     def test_search_only_playlists_20_results(self):
         html_code = read_in_file('tests/htmls/search_playlists_20_results.txt')
         found_playlists = YoutubeApi(
-                                 FakeFetcher(html_code)).search_playlists('')
+                                 FakeFetcher(html_code), True).search_playlists('')
         self.assertEqual(len(found_playlists), 20)
         for playlist in found_playlists:
             self.assertIsInstance(playlist, PlaylistSignature)
@@ -28,11 +28,11 @@ class YoutubeApiPlaylistSearchTest(unittest.TestCase):
         self.assertTrue(invalid_signature not in found_playlists)
 
     def test_real_search_no_results(self):
-        found_playlists = YoutubeApi().search_playlists('dbg76i6bncw6ogefnxbwe')
+        found_playlists = YoutubeApi(nocache=True).search_playlists('dbg76i6bncw6ogefnxbwe')
         self.assertEqual(len(found_playlists), 0)
 
     def test_real_search_multiple_results(self):
-        found_playlists = YoutubeApi().search_playlists('lana del rey')
+        found_playlists = YoutubeApi(nocache=True).search_playlists('lana del rey')
         self.assertEqual(len(found_playlists), 20)
         for playlist in found_playlists:
             self.assertIsInstance(playlist, PlaylistSignature)

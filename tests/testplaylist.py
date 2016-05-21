@@ -9,7 +9,7 @@ from test_tools import FakeFetcher, read_in_file, ExceptionRaisingFetcher
 class YoutubeApiGetPlaylistTest(unittest.TestCase):
     def test_api_get_playlist(self):
         html_code = read_in_file('tests/htmls/playlist_sample_source.txt')
-        playlist = YoutubeApi(FakeFetcher(html_code)).get_playlist(
+        playlist = YoutubeApi(FakeFetcher(html_code), True).get_playlist(
                                         'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         self.assertEqual(playlist.get_id(),
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
@@ -31,7 +31,7 @@ class YoutubeApiGetPlaylistTest(unittest.TestCase):
             self.assertIsInstance(video, VideoSignature)
 
     def test_real_get_playlist(self):
-        playlist = YoutubeApi().get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+        playlist = YoutubeApi(nocache=True).get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         self.assertEqual(playlist.get_id(),
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         self.assertEqual(playlist.get_name(),
@@ -46,9 +46,9 @@ class YoutubeApiGetPlaylistTest(unittest.TestCase):
 
     def test_youtubeplaylist_constructor(self):
         html_code = read_in_file('tests/htmls/playlist_sample_source.txt')
-        playlist = YoutubeApi(FakeFetcher(html_code)).get_playlist('PL        ')
+        playlist = YoutubeApi(FakeFetcher(html_code), True).get_playlist('PL        ')
         self.assertTrue(playlist is not None)
 
     def test_real_get_video_invalid_id(self):
         self.assertRaises(YoutubeInvalidIdError,
-                          lambda: YoutubeApi().get_playlist('hdsvhbdhdsvhhdsv'))
+                          lambda: YoutubeApi(nocache=True).get_playlist('hdsvhbdhdsvhhdsv'))

@@ -27,9 +27,9 @@ print(found_items)
 
 Documentation
 --------------------
-The main API class is YoutubeApi, which consists of 7 methods:
+The main API class is YoutubeApi, which consists of 8 methods:
 ```
-constructor(http_fetcher=None)
+constructor(http_fetcher=None, nocache=False)
 
 search(search_string: str) -> List of VideoSignature, ChannelSignature and PlaylistSignature
 search_videos(search_string: str) -> List of VideoSignature
@@ -38,8 +38,9 @@ search_playlists(search_string: str) -> List of PlaylistSignature
 get_video(video_id: str) -> YoutubeVideo object
 get_playlist(playlist_id: str) -> YoutubeChannel object
 get_channel(channel_id: str) -> YoutubePlaylist object
+clear_cache() -> None
 ```
-YoutubeApi constructor takes an optional http_fetcher argument.
+YoutubeApi constructor takes 2 optional arguments: http_fetcher and nocache flag.
 Object passed as http_fetcher is used to fetch www page source - it has to implement such an interface:
 ```python
 class Fetcher():
@@ -47,6 +48,7 @@ class Fetcher():
     def fetch_page(url): pass  # returns utf-8 decoded page source
 ```
 It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
+Important none: if you want to supply your own http_fetcher which doesn't make real http calls, it's best to set nocache to True.
 
 ---
 
@@ -147,6 +149,13 @@ get_thumbnail_url() -> str
 get_video(index: int) -> VideoSignature
 get_videos() -> List of VideoSignature
 ```
+
+---
+
+#####_YoutubeCache
+It's an internal class.
+You should never interact with it directly.
+Assume that any interaction with this class will break the program.
 
 License
 --------------------
