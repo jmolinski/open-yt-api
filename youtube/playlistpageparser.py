@@ -54,5 +54,6 @@ class PlaylistPageParser(BaseParser):
     def _extract_author(self):
         return self._html_parser.select('.pl-video-owner a')[0]['href'].split('/')[2]
 
+    # TODO remove this method
     def _extract_views(self):  # views amount data is not present on the page
         return 'NOTSET'

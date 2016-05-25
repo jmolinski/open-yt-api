@@ -9,7 +9,7 @@ from test_tools import FakeFetcher, read_in_file, ExceptionRaisingFetcher
 class YoutubeApiGetVideoTest(unittest.TestCase):
     def test_api_get_video(self):
         html_code = read_in_file('tests/htmls/video_sample_source.txt')
-        video = YoutubeApi(FakeFetcher(html_code), True).get_video('nVjsGKrE6E8')
+        video = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).get_video('nVjsGKrE6E8')
         self.assertEqual(video.get_id(), 'nVjsGKrE6E8')
         self.assertEqual(video.get_url(), 'https://www.youtube.com/watch?v=nVjsGKrE6E8')
         self.assertEqual(video.get_title(), 'Lana Del Rey - Summertime Sadness')
@@ -40,7 +40,7 @@ class YoutubeApiGetVideoTest(unittest.TestCase):
 
     def test_youtubevideo_constructor(self):
         html_code = read_in_file('tests/htmls/video_sample_source.txt')
-        video = YoutubeApi(FakeFetcher(html_code), nocache=True).get_video('           ')
+        video = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).get_video('           ')
         self.assertTrue(video is not None)
 
     def test_real_get_video_invalid_id(self):
@@ -50,5 +50,5 @@ class YoutubeApiGetVideoTest(unittest.TestCase):
     def test_real_get_video_invalid_fetcher(self):
         self.assertRaises(YoutubeApiConnectionError,
                           lambda: YoutubeApi(
-                                    ExceptionRaisingFetcher(),
+                                    http_fetcher=ExceptionRaisingFetcher(),
                                     nocache=True).get_video('nVjsGKrE6E8'))

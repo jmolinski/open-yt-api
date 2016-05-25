@@ -6,12 +6,12 @@ from test_tools import FakeFetcher, read_in_file
 class YoutubeApiChannelSearchTest(unittest.TestCase):
     def test_search_no_results(self):
         html_code = read_in_file('tests/htmls/search_no_results.txt')
-        found_channels = YoutubeApi(FakeFetcher(html_code), True).search_channels('')
+        found_channels = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).search_channels('')
         self.assertEqual(len(found_channels), 0)
 
     def test_search_only_channels_20_results(self):
         html_code = read_in_file('tests/htmls/search_channels_20_results.txt')
-        found_channels = YoutubeApi(FakeFetcher(html_code), True).search_channels('')
+        found_channels = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).search_channels('')
         self.assertEqual(len(found_channels), 20)
         for channel in found_channels:
             self.assertIsInstance(channel, ChannelSignature)

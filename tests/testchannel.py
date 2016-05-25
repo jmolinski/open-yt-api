@@ -7,7 +7,7 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_api_get_channel_signature(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(http_fetcher=FakeFetcher(html_code, html_code2), nocache=True).get_channel('LanaDelReyVEVO')
 
         self.assertEqual(channel.get_id(), 'LanaDelReyVEVO')
         self.assertEqual(channel.get_url(), 'https://www.youtube.com/user/LanaDelReyVEVO')
@@ -21,7 +21,7 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_api_get_channel_videos(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('LanaDelReyVEVO')
+        channel = YoutubeApi(http_fetcher=FakeFetcher(html_code, html_code2), nocache=True).get_channel('LanaDelReyVEVO')
         signature = VideoSignature('JRWox-i6aAk', 'Lana Del Rey - Blue Jeans',
                                     'LanaDelReyVEVO', '149473022', '4:21')
         self.assertTrue(signature in channel.get_uploaded_videos())
@@ -51,5 +51,5 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
     def test_youtubechannel_constructor(self):
         html_code = read_in_file('tests/htmls/channel_about_page.txt')
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
-        channel = YoutubeApi(FakeFetcher(html_code, html_code2), True).get_channel('           ')
+        channel = YoutubeApi(http_fetcher=FakeFetcher(html_code, html_code2), nocache=True).get_channel('           ')
         self.assertTrue(channel is not None)

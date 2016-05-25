@@ -44,6 +44,7 @@ class ChannelPageParser(BaseParser):
     def _extract_channel_name(self):
         return str(self._html_parser.select('.qualified-channel-title-text a')[0].string)
 
+    # TODO remove this method
     def _extract_channel_videos_amount(self):
         return 'NOTSET'  # data can't be extracted
 

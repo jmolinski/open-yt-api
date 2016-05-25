@@ -12,3 +12,5 @@ pylint:
 pep8:
   disable:
     - E302
+    - E127
+    - E128

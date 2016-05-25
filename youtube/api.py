@@ -15,7 +15,7 @@ class YoutubeApi():
     _http_fetcher = None
     _nocache = None
 
-    def __init__(self, http_fetcher=None, nocache=False):
+    def __init__(self, *, http_fetcher=None, nocache=False):
         self._http_fetcher = http_fetcher if http_fetcher is not None else UrllibPageFetcher()
         self._nocache = nocache
 
