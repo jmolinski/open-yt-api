@@ -33,6 +33,6 @@ def _exception_handling_wrapper(search_function, max_tries=5):
             return search_function()
         except (LookupError, ValueError, TypeError) as err:
             if max_tries == 1:
-                raise YoutubeApiRandomException(err)
+                raise YoutubeApiRandomException(err) from err
             else:
                 max_tries -= 1
