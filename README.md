@@ -1,3 +1,5 @@
+# TODO update docs
+
 # open-yt-api
 [![Code Health](https://landscape.io/github/Glenpl/open-yt-api/master/landscape.svg?style=flat)](https://landscape.io/github/Glenpl/open-yt-api/master)
 [![Build Status](https://travis-ci.org/Glenpl/open-yt-api.svg?branch=master)](https://travis-ci.org/Glenpl/open-yt-api)
@@ -13,7 +15,7 @@ Installation
 ```bash
 pip install openytapi
 ```
-
+# TODO change example
 Usage example
 --------------------
 ```python

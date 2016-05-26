@@ -19,4 +19,4 @@ class BaseParser():
 class BaseSearchParser(BaseParser):
     def parse(self, html_source):
         search_results = self._extract_results(html_source, self._tile_class_name, 'div')
-        return [self._parse_single_result(result) for result in search_results]
+        return tuple([self._parse_single_result(result) for result in search_results])

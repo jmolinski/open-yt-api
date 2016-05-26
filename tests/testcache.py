@@ -111,5 +111,5 @@ class YoutubeApiTestCache(unittest.TestCase):
         time2 = timer() - start
 
         # assert both are real http calls with parsing
-        self.assertTrue(max(time1, time2) < min(time1, time2) * 5)
+        self.assertTrue(max(time1, time2) < min(time1, time2) * 15)
         api_1.clear_cache()

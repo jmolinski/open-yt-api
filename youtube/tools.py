@@ -32,7 +32,7 @@ def _exception_handling_wrapper(search_function, *, max_tries=5):
     while True:
         try:
             return search_function()
-        except (LookupError, ValueError, TypeError) as err:
+        except (ValueError, TypeError, AttributeError, IndexError, KeyError) as err:
             if max_tries == 1:
                 raise YoutubeApiRandomException(parent_error=err) from err
             else:
