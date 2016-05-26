@@ -1,6 +1,7 @@
 from youtube.baseelement import BaseElement
 from youtube.playlistpageparser import PlaylistPageParser
 
+
 class YoutubePlaylist(BaseElement):
     _videos = None
 
@@ -17,22 +18,22 @@ class YoutubePlaylist(BaseElement):
         return PlaylistPageParser()
 
     def get_author(self):
-        return self._signature.get_author()
+        return self._signature.author
 
     def get_name(self):
-        return self._signature.get_name()
+        return self._signature.name
 
     def get_id(self):
-        return self._signature.get_id()
+        return self._signature.playlist_id
 
     def get_length(self):
-        return self._signature.get_length()
+        return self._signature.length
 
     def get_thumbnail_url(self):
-        return self._signature.get_thumbnail_url()
+        return self._signature.thumbnail
 
     def get_url(self):
-        return self._signature.get_url()
+        return self._signature.url
 
     def get_video(self, index):
         return self._videos[index]
