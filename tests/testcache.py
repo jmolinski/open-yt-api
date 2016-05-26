@@ -9,21 +9,17 @@ class YoutubeApiTestCache(unittest.TestCase):
         # actual http request and parsing
         start = timer()
         videos = api.search('Lana')
-        videos = api.search('Lana del')
         videos = api.search('Lana del rey')
         time1 = timer() - start
 
         # get cached version
         start = timer()
         videos = api.search('Lana')
-        videos = api.search('Lana del')
         videos = api.search('Lana del rey')
         time2 = timer() - start
 
         # cached should be at least 1000 times faster
         self.assertTrue(time1 > time2 * 1000)
-
-        api.clear_cache()
 
     def test_search_cache_right_values(self):
         api = YoutubeApi()
@@ -36,8 +32,6 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         # check if cache stores right values
         self.assertEqual(videos_a, videos_c)
-
-        api.clear_cache()
 
     def test_clear_cache(self):
         api = YoutubeApi()
@@ -62,8 +56,6 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         self.assertTrue(min(time1, time3) > time2 * 1000)
 
-        api.clear_cache()
-
     def test_get_object_cache_time(self):
         api = YoutubeApi()
 
@@ -81,8 +73,6 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         self.assertTrue(time1 > time2 * 1000)
 
-        api.clear_cache()
-
     def test_get_object_right_values(self):
         api = YoutubeApi()
 
@@ -91,4 +81,35 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         self.assertEqual(video1, video2)
 
-        api.clear_cache()
+    def test_global_cache_time(self):
+        api_1 = YoutubeApi(global_cache=True)
+        api_2 = YoutubeApi(global_cache=True)
+
+        start = timer()
+        video = api_1.get_video('nVjsGKrE6E8')
+        time1 = timer() - start
+
+        start = timer()
+        video = api_2.get_video('nVjsGKrE6E8')
+        time2 = timer() - start
+
+        self.assertTrue(time1 > time2 * 1000)
+        api_1.clear_cache()
+
+    def test_global_cache_is_shared(self):
+        api_1 = YoutubeApi(global_cache=True)
+        api_2 = YoutubeApi(global_cache=True)
+
+        start = timer()
+        video = api_1.get_video('nVjsGKrE6E8')
+        time1 = timer() - start
+
+        api_2.clear_cache()
+
+        start = timer()
+        video = api_1.get_video('nVjsGKrE6E8')
+        time2 = timer() - start
+
+        # assert both are real http calls with parsing
+        self.assertTrue(max(time1, time2) < min(time1, time2) * 5)
+        api_1.clear_cache()

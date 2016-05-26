@@ -1,31 +1,30 @@
-from youtube.cache import _YoutubeCache
 from youtube.errors import YoutubeApiRandomException
 
 # TODO create additional classes to handle caching eg. Search instead of search_wrapper function
 
 # theses 2 functions manage caching
-def search_wrapper(search_type, search_string, nocache, actual_search):
+def search_wrapper(search_type, search_string, cache, nocache, actual_search):
     if nocache:
         return _exception_handling_wrapper(actual_search)
 
-    cached = _YoutubeCache.get_search_result(search_type, search_string)
+    cached = cache.get_search_result(search_type, search_string)
     if cached:
         return cached
     else:
         results = _exception_handling_wrapper(actual_search)  # executes lambda
-        _YoutubeCache.add_search_result(search_type, search_string, results)
+        cache.add_search_result(search_type, search_string, results)
         return results
 
-def get_object_wrapper(object_id, nocache, actual_search):
+def get_object_wrapper(object_id, cache, nocache, actual_search):
     if nocache:
         return _exception_handling_wrapper(actual_search)
 
-    cached = _YoutubeCache.get_object(object_id)
+    cached = cache.get_object(object_id)
     if cached:
         return cached
     else:
         result = _exception_handling_wrapper(actual_search)  # executes lambda
-        _YoutubeCache.add_object(object_id, result)
+        cache.add_object(object_id, result)
         return result
 
 # if there was an random exception caused by eg. damaged html - repeat query
