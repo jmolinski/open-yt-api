@@ -23,10 +23,10 @@ class YoutubeApiGetPlaylistTest(unittest.TestCase):
         self.assertEqual(playlist.get_thumbnail_url(),
                          'https://i.ytimg.com/vi/cE6wxDqdOV0/mqdefault.jpg')
         video = playlist.get_video(0)
-        self.assertEqual(video.get_id(), 'nVjsGKrE6E8')
-        self.assertEqual(video.get_title(), 'Lana Del Rey - Summertime Sadness')
-        self.assertEqual(video.get_author(), 'LanaDelRey')
-        self.assertTrue(video.get_length(), '4:43')
+        self.assertEqual(video.video_id, 'nVjsGKrE6E8')
+        self.assertEqual(video.title, 'Lana Del Rey - Summertime Sadness')
+        self.assertEqual(video.author, 'LanaDelRey')
+        self.assertTrue(video.length, '4:43')
         for video in playlist.get_videos():
             self.assertIsInstance(video, VideoSignature)
 

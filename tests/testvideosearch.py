@@ -21,9 +21,9 @@ class YoutubeApiVideoSearchTest(unittest.TestCase):
         self.assertTrue(signature in found_videos)
         invalid_signature = VideoSignature(' ', ' ', ' ', ' ', ' ')
         self.assertTrue(invalid_signature not in found_videos)
-        self.assertEqual(found_videos[0].get_thumbnail_url(),
+        self.assertEqual(found_videos[0].thumbnail,
                          "https://i.ytimg.com/vi/{}/mqdefault.jpg".format(
-                          found_videos[0].get_id()))
+                          found_videos[0].video_id))
 
     def test_search_only_videos_20_results(self):
         html_code = read_in_file('tests/htmls/search_videos_20_results.txt')

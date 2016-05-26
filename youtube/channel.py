@@ -21,22 +21,22 @@ class YoutubeChannel(BaseElement):
         return 'https://www.youtube.com/user/{}/videos?view=0&sort=p&flow=list'.format(channel_id)
 
     def get_url(self):
-        return self._signature.get_url()
+        return self._signature.url
 
     def get_id(self):
-        return self._signature.get_id()
+        return self._signature.channel_id
 
     def get_name(self):
-        return self._signature.get_name()
+        return self._signature.name
 
     def get_videos_amount(self):
-        return self._signature.get_videos_amount()
+        return self._signature.videos_amount
 
     def get_subscriptions(self):
-        return self._signature.get_subscriptions()
+        return self._signature.subscriptions
 
     def get_thumbnail_url(self):
-        return self._signature.get_thumbnail_url()
+        return self._signature.thumbnail
 
     def get_uploaded_videos(self):
         return self._videos[:]

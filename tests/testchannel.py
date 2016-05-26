@@ -37,13 +37,13 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
 
     def test_real_get_channel_videos(self):
         channel = YoutubeApi(nocache=True).get_channel('LanaDelReyVEVO')
-        blue_jeans = [x for x in channel.get_uploaded_videos() if x.get_id() == 'JRWox-i6aAk']
+        blue_jeans = [x for x in channel.get_uploaded_videos() if x.video_id == 'JRWox-i6aAk']
         self.assertEqual(len(blue_jeans), 1)
         blue_jeans = blue_jeans[0]
-        self.assertEqual(blue_jeans.get_id(), 'JRWox-i6aAk')
-        self.assertEqual(blue_jeans.get_title(), 'Lana Del Rey - Blue Jeans')
-        self.assertEqual(blue_jeans.get_author(), 'LanaDelReyVEVO')
-        self.assertEqual(blue_jeans.get_length(), '4:21')
+        self.assertEqual(blue_jeans.video_id, 'JRWox-i6aAk')
+        self.assertEqual(blue_jeans.title, 'Lana Del Rey - Blue Jeans')
+        self.assertEqual(blue_jeans.author, 'LanaDelReyVEVO')
+        self.assertEqual(blue_jeans.length, '4:21')
 
         for video in channel.get_uploaded_videos():
             self.assertIsInstance(video, VideoSignature)
