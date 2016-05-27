@@ -29,7 +29,8 @@ class VideoPageParser(BaseParser):
     # TODO problematic - remove or fix...
     def _extract_views_next_video(self):
         try:
-            return self._remove_non_breaking_spaces(self._find_by_class('span', 'view-count').string.split(' ')[0])
+            views = self._remove_non_breaking_spaces(self._find_by_class('span', 'view-count').string.split(' ')[0])
+            return views.replace(',', '').replace('.', '')
         except AttributeError:  # AttributeError: 'NoneType' object has no attribute 'split'
             return '0'
 
@@ -38,7 +39,7 @@ class VideoPageParser(BaseParser):
 
     def parse_related_videos(self, page_html):
         related_videos = self._extract_related_videos(page_html)
-        return [self._parse_related_video(video) for video in related_videos]
+        return tuple([self._parse_related_video(video) for video in related_videos])
 
     def _extract_related_videos(self, page_html):
         self._initialize_parser(page_html)

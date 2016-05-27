@@ -61,13 +61,11 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         start = timer()
         video = api.get_video('nVjsGKrE6E8')
-        channel = api.get_channel('LanaDelReyVEVO')
         playlist = api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         time1 = timer() - start
 
         start = timer()
         video = api.get_video('nVjsGKrE6E8')
-        channel = api.get_channel('LanaDelReyVEVO')
         playlist = api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         time2 = timer() - start
 

@@ -32,7 +32,7 @@ class PlaylistPageParser(BaseParser):
         return link.replace('?v=', ' ').replace('&list', ' ').split(' ')[1]
 
     def get_videos(self, page_html):
-        return [self._parse_single_video(video) for video in self._extract_results(page_html, 'pl-video', 'tr')]
+        return tuple([self._parse_single_video(video) for video in self._extract_results(page_html, 'pl-video', 'tr')])
 
     def _parse_single_video(self, video):
         self._initialize_parser(repr(video))

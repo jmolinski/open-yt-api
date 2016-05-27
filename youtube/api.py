@@ -5,7 +5,6 @@ from youtube.channelsearch import ChannelSearch
 from youtube.playlistsearch import PlaylistSearch
 from youtube.video import YoutubeVideo
 from youtube.playlist import YoutubePlaylist
-from youtube.channel import YoutubeChannel
 from youtube.cache import YoutubeLocalCache, YoutubeGlobalCache
 from youtube.tools import search_wrapper, get_object_wrapper
 
@@ -44,10 +43,6 @@ class YoutubeApi():
     def get_playlist(self, playlist_id):
         return get_object_wrapper(playlist_id, self._cache, self._nocache,
                                   lambda: YoutubePlaylist(self._http_fetcher, playlist_id))
-
-    def get_channel(self, channel_id):
-        return get_object_wrapper(channel_id, self._cache, self._nocache,
-                                  lambda: YoutubeChannel(self._http_fetcher, channel_id))
 
     def clear_cache(self):
         self._cache.clear_cache()
