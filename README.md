@@ -15,16 +15,16 @@ Installation
 ```bash
 pip install openytapi
 ```
-# TODO change example
+
 Usage example
 --------------------
 ```python
 from youtube.api import YoutubeApi
 
-found_items = YoutubeApi().search('lana del rey')
-found_playlists = YoutubeApi().search_playlists('lana del rey')
+videos = YoutubeApi().search_videos('lana del rey')
 
-print(found_items)
+for video in videos:
+    print(video.title)
 ```
 
 Documentation
