@@ -17,26 +17,30 @@ class YoutubePlaylist(BaseElement):
     def _get_default_parser(self):
         return PlaylistPageParser()
 
-    def get_author(self):
+    @property
+    def author(self):
         return self._signature.author
 
-    def get_name(self):
+    @property
+    def name(self):
         return self._signature.name
 
-    def get_id(self):
+    @property
+    def playlist_id(self):
         return self._signature.playlist_id
 
-    def get_length(self):
+    @property
+    def length(self):
         return self._signature.length
 
-    def get_thumbnail_url(self):
+    @property
+    def thumbnail(self):
         return self._signature.thumbnail
 
-    def get_url(self):
+    @property
+    def url(self):
         return self._signature.url
 
-    def get_video(self, index):
-        return self._videos[index]
-
-    def get_videos(self):
+    @property
+    def videos(self):
         return self._videos[:]

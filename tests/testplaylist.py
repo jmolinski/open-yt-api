@@ -11,37 +11,37 @@ class YoutubeApiGetPlaylistTest(unittest.TestCase):
         html_code = read_in_file('tests/htmls/playlist_sample_source.txt')
         playlist = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).get_playlist(
                                         'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        self.assertEqual(playlist.get_id(),
+        self.assertEqual(playlist.playlist_id,
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        self.assertEqual(playlist.get_name(),
+        self.assertEqual(playlist.name,
                          'Lana Del Rey - All songs playlist')
-        self.assertEqual(playlist.get_author(), 'juluatanaya')
-        self.assertEqual(int(playlist.get_length()), 118)
-        self.assertEqual(playlist.get_url(),
+        self.assertEqual(playlist.author, 'juluatanaya')
+        self.assertEqual(int(playlist.length), 118)
+        self.assertEqual(playlist.url,
                          'https://www.youtube.com/playlist?list=' +
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        self.assertEqual(playlist.get_thumbnail_url(),
+        self.assertEqual(playlist.thumbnail,
                          'https://i.ytimg.com/vi/cE6wxDqdOV0/mqdefault.jpg')
-        video = playlist.get_video(0)
+        video = playlist.videos[0]
         self.assertEqual(video.video_id, 'nVjsGKrE6E8')
         self.assertEqual(video.title, 'Lana Del Rey - Summertime Sadness')
         self.assertEqual(video.author, 'LanaDelRey')
         self.assertTrue(video.length, '4:43')
-        for video in playlist.get_videos():
+        for video in playlist.videos:
             self.assertIsInstance(video, VideoSignature)
 
     def test_real_get_playlist(self):
         playlist = YoutubeApi(nocache=True).get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        self.assertEqual(playlist.get_id(),
+        self.assertEqual(playlist.playlist_id,
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        self.assertEqual(playlist.get_name(),
+        self.assertEqual(playlist.name,
                          'Lana Del Rey - All songs playlist')
-        self.assertEqual(playlist.get_author(), 'juluatanaya')
-        self.assertTrue(int(playlist.get_length()) >= 105)
-        self.assertEqual(playlist.get_url(),
+        self.assertEqual(playlist.author, 'juluatanaya')
+        self.assertTrue(int(playlist.length) >= 105)
+        self.assertEqual(playlist.url,
                          'https://www.youtube.com/playlist?list=' +
                          'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
-        for video in playlist.get_videos():
+        for video in playlist.videos:
             self.assertIsInstance(video, VideoSignature)
 
     def test_youtubeplaylist_constructor(self):

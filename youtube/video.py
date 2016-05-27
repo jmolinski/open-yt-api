@@ -18,35 +18,45 @@ class YoutubeVideo(BaseElement):
         self._next_video = self._parser.get_next_video(page_html)
         self._related_videos = self._parser.parse_related_videos(page_html)
 
-    def get_url(self):
+    @property
+    def url(self):
         return self._signature.url
 
-    def get_length(self):
+    @property
+    def length(self):
         return self._signature.length
 
-    def get_length_in_seconds(self):
+    @property
+    def length_in_seconds(self):
         time = self._signature.length.split(":")[::-1]
         [secs, mins, hrs, *__] = time + ['0', '0', '0'] # noqa
         hrs, mins, secs = int(hrs), int(mins), int(secs)
         return 3600 * hrs + 60 * mins + secs
 
-    def get_author(self):
+    @property
+    def author(self):
         return self._signature.author
 
-    def get_title(self):
+    @property
+    def title(self):
         return self._signature.title
 
-    def get_id(self):
+    @property
+    def video_id(self):
         return self._signature.video_id
 
-    def get_views(self):
+    @property
+    def views(self):
         return self._signature.views
 
-    def get_next_video(self):
+    @property
+    def next_video(self):
         return self._next_video
 
-    def get_related_videos(self):
+    @property
+    def related_videos(self):
         return self._related_videos[:]
 
-    def get_thumbnail_url(self):
+    @property
+    def thumbnail(self):
         return self._signature.thumbnail
