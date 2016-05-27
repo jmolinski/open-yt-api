@@ -15,7 +15,7 @@ class ChannelPageParser(BaseParser):
         return VideoSignature(self._extract_id(),
                               self._extract_title(),
                               self._author,
-                              self._extract_views(),
+                              int(self._extract_views()),
                               self._extract_length())
 
     def _extract_length(self):
@@ -34,8 +34,8 @@ class ChannelPageParser(BaseParser):
         self._initialize_parser(repr(page_html))
         return ChannelSignature(self._extract_channel_id(),
                                 self._extract_channel_name(),
-                                self._extract_channel_videos_amount(),
-                                self._extract_channel_subscriptions(),
+                                int(self._extract_channel_videos_amount()),
+                                int(self._extract_channel_subscriptions()),
                                 self._extract_channel_thumbnail_url())
 
     def _extract_channel_id(self):
@@ -46,7 +46,7 @@ class ChannelPageParser(BaseParser):
 
     # TODO remove this method
     def _extract_channel_videos_amount(self):
-        return 'NOTSET'  # data can't be extracted
+        return '0'  # data can't be extracted // NOTSET?
 
     def _extract_channel_thumbnail_url(self):
         return self._html_parser.select('.channel-header-profile-image')[0]['src']

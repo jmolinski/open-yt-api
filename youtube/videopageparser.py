@@ -14,7 +14,7 @@ class VideoPageParser(BaseParser):
         return VideoSignature(self._extract_id_next_video(),
                               self._extract_title_next_video(),
                               self._extract_author_next_video(),
-                              self._extract_views_next_video(),
+                              int(self._extract_views_next_video()),
                               self._extract_length_next_video())
 
     def _extract_id_next_video(self):
@@ -26,11 +26,15 @@ class VideoPageParser(BaseParser):
     def _extract_author_next_video(self):
         return self._find_by_class('span', 'g-hovercard')['data-ytid']
 
+    # TODO problematic - remove or fix...
     def _extract_views_next_video(self):
-        return self._remove_non_breaking_spaces(self._find_by_class('span', 'view-count').string.split(' ')[0])
+        try:
+            return self._remove_non_breaking_spaces(self._find_by_class('span', 'view-count').string.split(' ')[0])
+        except AttributeError:  # AttributeError: 'NoneType' object has no attribute 'split'
+            return '0'
 
     def _extract_length_next_video(self):
-        return str(self._find_by_class('span', 'video-time').string)
+        return str(self._find_by_class('span', 'video-time').string).strip()
 
     def parse_related_videos(self, page_html):
         related_videos = self._extract_related_videos(page_html)
@@ -46,7 +50,7 @@ class VideoPageParser(BaseParser):
     def get_signature(self, page_html):
         self._initialize_parser(repr(page_html))
         return VideoSignature(self._extract_id(), self._extract_title(),
-                              self._extract_author(), self._extract_views(),
+                              self._extract_author(), int(self._extract_views()),
                               self._extract_length())
 
     def _extract_author(self):

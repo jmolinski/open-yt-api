@@ -7,7 +7,7 @@ class VideoSearchParser(BaseSearchParser):
     def _parse_single_result(self, search_result):
         self._initialize_parser(repr(search_result))
         return VideoSignature(self._extract_id(), self._extract_title(),
-                              self._extract_author(), self._extract_views(),
+                              self._extract_author(), int(self._extract_views()),
                               self._extract_length())
 
     def _extract_length(self):

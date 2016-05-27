@@ -12,8 +12,8 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
         self.assertEqual(channel.channel_id, 'LanaDelReyVEVO')
         self.assertEqual(channel.url, 'https://www.youtube.com/user/LanaDelReyVEVO')
         self.assertEqual(channel.name, 'LanaDelReyVEVO')
-        self.assertEqual(channel.videos_amount, 'NOTSET')
-        self.assertEqual(channel.subscriptions, '3983841')
+        self.assertEqual(channel.videos_amount, 0)
+        self.assertEqual(channel.subscriptions, 3983841)
         self.assertEqual(channel.thumbnail,
                          'https://yt3.ggpht.com/-JXK6ocQ08J8/AAAAAAAAAAI/' +
                          'AAAAAAAAAAA/aGPAhXfQpMw/s100-c-k-no/photo.jpg')
@@ -23,7 +23,7 @@ class YoutubeApiGetChannelTest(unittest.TestCase):
         html_code2 = read_in_file('tests/htmls/channel_videos_page.txt')
         channel = YoutubeApi(http_fetcher=FakeFetcher(html_code, html_code2), nocache=True).get_channel('LanaDelReyVEVO')
         signature = VideoSignature('JRWox-i6aAk', 'Lana Del Rey - Blue Jeans',
-                                    'LanaDelReyVEVO', '149473022', '4:21')
+                                    'LanaDelReyVEVO', 149473022, '4:21')
         self.assertTrue(signature in channel.uploaded_videos)
         for video in channel.uploaded_videos:
             self.assertIsInstance(video, VideoSignature)

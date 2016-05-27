@@ -18,12 +18,12 @@ class YoutubeApiPlaylistSearchTest(unittest.TestCase):
 
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
                                       'Lana Del Rey - All songs playlist',
-                                      '119', 'juluatanaya',
+                                      119, 'juluatanaya',
                             'https://i.ytimg.com/vi/nVjsGKrE6E8/mqdefault.jpg',
                                       'nVjsGKrE6E8')
 
         self.assertTrue(signature in found_playlists)
-        invalid_signature = PlaylistSignature(' ', ' ', ' ', ' ', ' ', ' ')
+        invalid_signature = PlaylistSignature(' ', ' ', 0, ' ', ' ', ' ')
         self.assertTrue(invalid_signature not in found_playlists)
 
     def test_real_search_no_results(self):

@@ -4,7 +4,7 @@ class VideoSignature(Struct):
     video_id = TypedField(str)
     title = TypedField(str)
     author = TypedField(str)
-    views = TypedField(str)
+    views = TypedField(int)
     length = TypedField(str)
 
     @property

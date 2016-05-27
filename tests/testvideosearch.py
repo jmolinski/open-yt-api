@@ -17,9 +17,9 @@ class YoutubeApiVideoSearchTest(unittest.TestCase):
         for video in found_videos:
             self.assertIsInstance(video, VideoSignature)
         signature = VideoSignature('JRWox-i6aAk', 'Lana Del Rey - Blue Jeans',
-                                    'LanaDelReyVEVO', '146576399', '4:21')
+                                    'LanaDelReyVEVO', 146576399, '4:21')
         self.assertTrue(signature in found_videos)
-        invalid_signature = VideoSignature(' ', ' ', ' ', ' ', ' ')
+        invalid_signature = VideoSignature(' ', ' ', ' ', 0, ' ')
         self.assertTrue(invalid_signature not in found_videos)
         self.assertEqual(found_videos[0].thumbnail,
                          "https://i.ytimg.com/vi/{}/mqdefault.jpg".format(

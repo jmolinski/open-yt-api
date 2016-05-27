@@ -8,7 +8,7 @@ class PlaylistSearchParser(BaseSearchParser):
         self._initialize_parser(repr(search_result))
         return PlaylistSignature(self._extract_id(),
                                  self._extract_name(),
-                                 self._extract_playlist_length(),
+                                 int(self._extract_playlist_length()),
                                  self._extract_author(),
                                  self._extract_thumbnail_url(),
                                  self._extract_first_video_id())

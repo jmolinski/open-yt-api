@@ -3,7 +3,7 @@ from simplestruct import Struct, TypedField
 class PlaylistSignature(Struct):
     playlist_id = TypedField(str)
     name = TypedField(str)
-    length = TypedField(str)
+    length = TypedField(int)
     author = TypedField(str)
     thumbnail = TypedField(str)
     first_video_id = TypedField(str)

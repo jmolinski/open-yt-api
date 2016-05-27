@@ -3,8 +3,8 @@ from simplestruct import Struct, TypedField
 class ChannelSignature(Struct):
     channel_id = TypedField(str)
     name = TypedField(str)
-    videos_amount = TypedField(str)
-    subscriptions = TypedField(str)
+    videos_amount = TypedField(int)
+    subscriptions = TypedField(int)
     thumbnail = TypedField(str)
 
     @property

@@ -7,7 +7,7 @@ class PlaylistPageParser(BaseParser):
         self._initialize_parser(repr(page_html))
         return PlaylistSignature(self._extract_playlist_id(),
                                  self._extract_playlist_name(),
-                                 self._extract_playlist_length(),
+                                 int(self._extract_playlist_length()),
                                  self._extract_playlist_author(),
                                  self._extract_playlist_thumbnail(),
                                  self._extract_playlist_first_video_id())
@@ -39,7 +39,7 @@ class PlaylistPageParser(BaseParser):
         return VideoSignature(self._extract_id(),
                               self._extract_title(),
                               self._extract_author(),
-                              self._extract_views(),
+                              int(self._extract_views()),
                               self._extract_length())
 
     def _extract_length(self):
@@ -56,4 +56,4 @@ class PlaylistPageParser(BaseParser):
 
     # TODO remove this method
     def _extract_views(self):  # views amount data is not present on the page
-        return 'NOTSET'
+        return '0'  # NOTSET

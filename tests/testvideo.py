@@ -14,7 +14,7 @@ class YoutubeApiGetVideoTest(unittest.TestCase):
         self.assertEqual(video.url, 'https://www.youtube.com/watch?v=nVjsGKrE6E8')
         self.assertEqual(video.title, 'Lana Del Rey - Summertime Sadness')
         self.assertEqual(video.author, 'UCqk3CdGN_j8IR9z4uBbVPSg')
-        self.assertEqual(video.views, '247990936')
+        self.assertEqual(video.views, 247990936)
         self.assertTrue(video.length, '4:43')
         self.assertEqual(video.length_in_seconds, 283)
         self.assertIsInstance(video.next_video, VideoSignature)

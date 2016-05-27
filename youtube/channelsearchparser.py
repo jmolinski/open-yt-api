@@ -8,8 +8,8 @@ class ChannelSearchParser(BaseSearchParser):
         self._initialize_parser(repr(search_result))
         return ChannelSignature(self._extract_id(),
                                 self._extract_name(),
-                                self._extract_videos_amount(),
-                                self._extract_subscriptions(),
+                                int(self._extract_videos_amount()),
+                                int(self._extract_subscriptions()),
                                 self._extract_thumbnail_url())
 
     def _extract_id(self):
@@ -29,4 +29,4 @@ class ChannelSearchParser(BaseSearchParser):
 
     def _extract_subscriptions(self):
         count = self._find_by_class('span', 'yt-subscriber-count')
-        return '0' if count is None else self._remove_non_breaking_spaces(count['title'])
+        return '0' if count is None else self._remove_non_breaking_spaces(count['title']).replace(' ', '')
