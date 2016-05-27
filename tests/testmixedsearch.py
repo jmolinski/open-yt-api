@@ -9,12 +9,12 @@ from test_tools import FakeFetcher, ExceptionRaisingFetcher, read_in_file
 class YoutubeApiVideoSearchTest(unittest.TestCase):
     def test_api_search_no_results(self):
         html_code = read_in_file('tests/htmls/search_no_results.txt')
-        found_items = YoutubeApi(FakeFetcher(html_code), True).search('')
+        found_items = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).search('')
         self.assertEqual(len(found_items), 0)
 
     def test_api_search(self):
         html_code = read_in_file('tests/htmls/search_mixed_17_results.txt')
-        found_items = YoutubeApi(FakeFetcher(html_code), True).search('')
+        found_items = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).search('')
         self.assertEqual(len(found_items), 20)
         videos = [item for item in found_items if isinstance(item, VideoSignature)]
         playlists = [item for item in found_items if isinstance(item, PlaylistSignature)]
@@ -43,4 +43,4 @@ class YoutubeApiVideoSearchTest(unittest.TestCase):
 
     def test_real_search_invalid_url(self):
         with self.assertRaises(YoutubeApiConnectionError):
-            YoutubeApi(ExceptionRaisingFetcher(), True).search('')
+            YoutubeApi(http_fetcher=ExceptionRaisingFetcher(), nocache=True).search('')

@@ -12,11 +12,11 @@ class BaseParser():
     def _remove_non_breaking_spaces(self, string):
         return string.replace('\xa0', '')
 
-    def _extract_results(self, html_source, class_name, tag='div'):
+    def _extract_results(self, html_source, class_name, tag):
         self._initialize_parser(html_source)
         return self._html_parser.find_all(tag, class_=class_name)
 
 class BaseSearchParser(BaseParser):
     def parse(self, html_source):
-        search_results = self._extract_results(html_source, self._tile_class_name)
-        return [self._parse_single_result(result) for result in search_results]
+        search_results = self._extract_results(html_source, self._tile_class_name, 'div')
+        return tuple([self._parse_single_result(result) for result in search_results])

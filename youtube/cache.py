@@ -1,30 +1,36 @@
 
 class _YoutubeCache():
-    _search_results = {}
-    _objects = {}
-
-    @staticmethod
-    def get_search_result(search_type, query):
+    def get_search_result(self, search_type, query):
         try:
-            return _YoutubeCache._search_results.get(search_type).get(query)
+            return self._cache._search_results.get(search_type).get(query)  # pylint:disable=protected-access
         except AttributeError:  # None.get(query)
             return None
 
-    @staticmethod
-    def add_search_result(search_type, query, result):
-        if search_type not in _YoutubeCache._search_results:
-            _YoutubeCache._search_results[search_type] = {}
-        _YoutubeCache._search_results[search_type][query] = result
+    def add_search_result(self, search_type, query, result):
+        if search_type not in self._cache._search_results:  # pylint:disable=protected-access
+            self._cache._search_results[search_type] = {}  # pylint:disable=protected-access
+        self._cache._search_results[search_type][query] = result  # pylint:disable=protected-access
 
-    @staticmethod
-    def get_object(id_):
-        return _YoutubeCache._objects.get(id_)
+    def get_object(self, id_):
+        return self._cache._objects.get(id_)  # pylint:disable=protected-access
 
-    @staticmethod
-    def add_object(id_, result):
-        _YoutubeCache._objects[id_] = result
+    def add_object(self, id_, result):
+        self._cache._objects[id_] = result  # pylint:disable=protected-access
 
-    @staticmethod
-    def clear_cache():
-        _YoutubeCache._search_results = {}
-        _YoutubeCache._objects = {}
+    def clear_cache(self):
+        self._cache._search_results = {}  # pylint:disable=protected-access
+        self._cache._objects = {}  # pylint:disable=protected-access
+
+
+class YoutubeLocalCache(_YoutubeCache):
+    def __init__(self):
+        self._search_results = {}
+        self._objects = {}
+        self._cache = self
+
+
+class YoutubeGlobalCache(_YoutubeCache):
+    _global_cache = YoutubeLocalCache()
+
+    def __init__(self):
+        self._cache = YoutubeGlobalCache._global_cache

@@ -17,4 +17,4 @@ class BaseSearch():
         try:
             return self._http_fetcher.fetch_page(url)
         except:  # pylint:disable=bare-except
-            raise YoutubeApiConnectionError('Could not fetch page')
+            raise YoutubeApiConnectionError(message='Could not fetch page')

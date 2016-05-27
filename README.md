@@ -19,143 +19,123 @@ Usage example
 ```python
 from youtube.api import YoutubeApi
 
-found_items = YoutubeApi().search('lana del rey')
-found_playlists = YoutubeApi().search_playlists('lana del rey')
+videos = YoutubeApi().search_videos('lana del rey')
 
-print(found_items)
+for video in videos:
+    print(video.title)
 ```
 
 Documentation
 --------------------
-The main API class is YoutubeApi, which consists of 8 methods:
+The main API class is YoutubeApi, which consists of 7 methods:
 ```
-constructor(http_fetcher=None, nocache=False)
+constructor(http_fetcher=None, nocache=False, global_cache=False)
 
-search(search_string: str) -> List of VideoSignature, ChannelSignature and PlaylistSignature
-search_videos(search_string: str) -> List of VideoSignature
-search_channels(search_string: str) -> List of ChannelSignature
-search_playlists(search_string: str) -> List of PlaylistSignature
+search(search_string: str) -> Tuple of VideoSignature, ChannelSignature and PlaylistSignature
+search_videos(search_string: str) -> Tuple of VideoSignature
+search_channels(search_string: str) -> Tuple of ChannelSignature
+search_playlists(search_string: str) -> Tuple of PlaylistSignature
 get_video(video_id: str) -> YoutubeVideo object
 get_playlist(playlist_id: str) -> YoutubeChannel object
 get_channel(channel_id: str) -> YoutubePlaylist object
 clear_cache() -> None
 ```
-YoutubeApi constructor takes 2 optional arguments: http_fetcher and nocache flag.
-Object passed as http_fetcher is used to fetch www page source - it has to implement such an interface:
+YoutubeApi constructor takes 3 optional, keyword-only arguments: http_fetcher, nocache flag and global_cache flag.
+Object passed as http_fetcher is used to fetch page source - it has to implement such an interface:
 ```python
 class Fetcher():
-    def __init__(): pass  # default constructor
-    def fetch_page(url): pass  # returns utf-8 decoded page source
+    def fetch_page(self, url): pass  # returns utf-8 decoded page source
 ```
 It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
 Important note: if you want to supply your own http_fetcher which doesn't make real http calls, it's best to set nocache to True.
+If nocache is set to True no cache is used at all. If nocache is set to False or omitted cache is used.
+If global_cache is set to True global cache (shared among all YoutubeApi instances with global_cache set to True) is used.
+If global_cache is set to False or omitted local cache (available just to this one particular YoutubeApi instance) is used.
 
 ---
 
 #####VideoSignature
-It's a value object.
+It's a hashable value object.
 May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
+All fields are immutable.
 ```
-get_url() -> str
-get_id() -> str
-get_length() -> str
-get_title() -> str
-get_author() -> str
-get_views() -> str
-get_thumbnail_url() -> str
+url: str
+video_id: str
+length: str
+title: str
+author: str
+views: int
+thumbnail: str
 ```
 
 ---
 
 #####ChannelSignature
-It's a value object.
+It's a hashable value object.
 May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
+All fields are immutable.
 ```
-get_url() -> str
-get_id() -> str
-get_name() -> str
-get_videos_amount() -> str
-get_subscriptions() -> str
-get_thumbnail_url() -> str
+url: str
+channel_id: str
+name: str
+videos_amount: int
+subscriptions: int
+thumbnail: str
 ```
 
 ---
 
 #####PlaylistSignature
-It's a value object.
+It's a hashable value object.
 May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
+All fields are immutable.
 ```
-get_url() -> str
-get_id() -> str
-get_name() -> str
-get_length() -> str
-get_thumbnail_url() -> str
-get_author() -> str
-get_first_video_id() -> str
-get_first_video_url() -> str
+url: str
+playlist_id: str
+name: str
+length: int
+thumbnail: str
+author: str
+first_video_id: str
+first_video_url: str
 ```
 
 ---
 
 #####YoutubeVideo
-It's a value object.
+It's a hashable value object.
 May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
+All fields are immutable.
 ```
-get_url() -> str
-get_length() -> str
-get_length_in_seconds() -> int
-get_author() -> str
-get_title() -> str
-get_id() -> str
-get_views() -> str
-get_thumbnail_url() -> str
-get_next_video() -> VideoSignature
-get_related_videos() -> List of VideoSignature
-```
-
----
-
-#####YoutubeChannel
-It's a value object.
-May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
-```
-get_url() -> str
-get_id() -> str
-get_name() -> str
-get_videos_amount() -> str
-get_subscriptions() -> str
-get_thumbnail_url() -> str
-get_uploaded_videos() -> List of VideoSignature
+url: str
+length: str
+length_in_seconds: int
+author: str
+title: str
+video_id: str
+views: int
+thumbnail: str
+next_video: VideoSignature
+related_videos: Tuple of VideoSignature
 ```
 
 ---
 
 #####YoutubePlaylist
-It's a value object.
+It's a hashable value object.
 May throw exceptions during construction.
-Member methods guaranteed not to throw exceptions.
+All fields are immutable.
 ```
-get_url() -> str
-get_id() -> str
-get_name() -> str
-get_author() -> str
-get_length() -> str
-get_thumbnail_url() -> str
-get_video(index: int) -> VideoSignature
-get_videos() -> List of VideoSignature
+url: str
+playlist_id: str
+name: str
+author: str
+length: str
+thumbnail: str
+videos: Tuple of VideoSignature
 ```
 
 ---
-
-#####_YoutubeCache
-It's an internal class.
-You should never interact with it directly.
-Assume that any interaction with this class will break the program.
 
 License
 --------------------
