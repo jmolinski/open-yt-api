@@ -29,4 +29,5 @@ class ChannelSearchParser(BaseSearchParser):
 
     def _extract_subscriptions(self):
         count = self._find_by_class('span', 'yt-subscriber-count')
-        return '0' if count is None else self._remove_non_breaking_spaces(count['title']).replace(' ', '')
+        rmnbs = self._remove_non_breaking_spaces
+        return '0' if count is None else rmnbs(count['title']).replace(' ', '').replace(',', '')
