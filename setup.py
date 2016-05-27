@@ -5,10 +5,10 @@ HERE = path.abspath(path.dirname(__file__))
 
 setup(
     name='openytapi',
-    version='1.1.0',
+    version='2.0.0',
     description='Open YouTube API library',
     url='https://github.com/Glenpl/openytapi',
-    download_url='https://github.com/Glenpl/openytapi/tarball/1.1.0',
+    download_url='https://github.com/Glenpl/openytapi/tarball/2.0.0',
     author='Glenpl/Jakub Molinski',
     author_email='kubamolinski@gmail.com',
     license='MIT',
@@ -23,7 +23,7 @@ setup(
     ],
     keywords='open youtube api',
     packages=['youtube'],
-    install_requires=['beautifulsoup4', 'requests']
+    install_requires=['beautifulsoup4', 'simplestruct']
 )
 
 __author__ = 'glenpl'
