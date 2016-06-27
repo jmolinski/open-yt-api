@@ -13,3 +13,13 @@ class ChannelSignature(Struct):
             return 'https://www.youtube.com/channel/' + self.channel_id
         else:
             return 'https://www.youtube.com/user/' + self.channel_id
+
+    def as_dict(self):
+        return {
+            'id': self.channel_id,
+            'name': self.name,
+            'videos_amount': self.videos_amount,
+            'subscriptions': self.subscriptions,
+            'url': self.url,
+            'thumbnail': self.thumbnail
+        }

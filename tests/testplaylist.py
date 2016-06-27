@@ -52,3 +52,15 @@ class YoutubeApiGetPlaylistTest(unittest.TestCase):
     def test_real_get_video_invalid_id(self):
         self.assertRaises(YoutubeInvalidIdError,
                           lambda: YoutubeApi(nocache=True).get_playlist('hdsvhbdhdsvhhdsv'))
+
+    def test_as_dict(self):
+        def test_api_get_playlist(self):
+            html_code = read_in_file('tests/htmls/playlist_sample_source.txt')
+            playlist = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).get_playlist(
+                                            'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+
+            keys_playlist = ['videos', 'id', 'name', 'author', 'length', 'url', 'thumbnail']
+            self.assertTrue(all(x in playlist.as_dict() for x in keys_playlist))
+            keys_video = ['id', 'title', 'author', 'length', 'url', 'thumbnail', 'views']
+            for video in playlist.as_dict()['videos']:
+                self.assertTrue(all(x in video for x in keys_video))

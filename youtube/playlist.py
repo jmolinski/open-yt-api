@@ -44,3 +44,14 @@ class YoutubePlaylist(BaseElement):
     @property
     def videos(self):
         return self._videos[:]
+
+    def as_dict(self):
+        return {
+            'id': self.playlist_id,
+            'name': self.name,
+            'author': self.author,
+            'length': self.length,
+            'url': self.url,
+            'thumbnail': self.thumbnail,
+            'videos': [video.as_dict() for video in self.videos]
+        }

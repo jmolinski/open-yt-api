@@ -14,3 +14,14 @@ class VideoSignature(Struct):
     @property
     def thumbnail(self):
         return "https://i.ytimg.com/vi/{}/mqdefault.jpg".format(self.video_id)
+
+    def as_dict(self):
+        return {
+            'id': self.video_id,
+            'title': self.title,
+            'author': self.author,
+            'views': self.views,
+            'length': self.length,
+            'url': self.url,
+            'thumbnail': self.thumbnail
+        }

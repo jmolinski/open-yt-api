@@ -66,6 +66,7 @@ title: str
 author: str
 views: int
 thumbnail: str
+as_dict() -> dict
 ```
 
 ---
@@ -81,6 +82,7 @@ name: str
 videos_amount: int
 subscriptions: int
 thumbnail: str
+as_dict() -> dict
 ```
 
 ---
@@ -98,6 +100,7 @@ thumbnail: str
 author: str
 first_video_id: str
 first_video_url: str
+as_dict() -> dict
 ```
 
 ---
@@ -117,6 +120,7 @@ views: int
 thumbnail: str
 next_video: VideoSignature
 related_videos: Tuple of VideoSignature
+as_dict() -> dict
 ```
 
 ---
@@ -133,6 +137,7 @@ author: str
 length: str
 thumbnail: str
 videos: Tuple of VideoSignature
+as_dict() -> dict
 ```
 
 ---

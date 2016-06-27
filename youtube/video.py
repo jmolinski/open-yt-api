@@ -60,3 +60,17 @@ class YoutubeVideo(BaseElement):
     @property
     def thumbnail(self):
         return self._signature.thumbnail
+
+    def as_dict(self):
+        return {
+            'id': self.video_id,
+            'title': self.title,
+            'author': self.author,
+            'views': self.views,
+            'length': self.length,
+            'length_in_seconds': self.length_in_seconds,
+            'url': self.url,
+            'thumbnail': self.thumbnail,
+            'next_video': self.next_video.as_dict(),
+            'related_videos': [video.as_dict() for video in self.related_videos]
+        }

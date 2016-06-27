@@ -51,3 +51,18 @@ class YoutubeApiGetVideoTest(unittest.TestCase):
                           lambda: YoutubeApi(
                                     http_fetcher=ExceptionRaisingFetcher(),
                                     nocache=True).get_video('nVjsGKrE6E8'))
+
+    def test_as_dict(self):
+        html_code = read_in_file('tests/htmls/video_sample_source.txt')
+        video = YoutubeApi(http_fetcher=FakeFetcher(html_code), nocache=True).get_video('nVjsGKrE6E8')
+        keys_video = []
+
+        keys_video = ['id', 'title', 'author', 'length', 'url', 'thumbnail', 'views',
+                      'length_in_seconds', 'next_video', 'related_videos']
+        self.assertTrue(all(x in video.as_dict() for x in keys_video))
+
+        keys_videosignature = ['id', 'title', 'author', 'length', 'url', 'thumbnail', 'views']
+        self.assertTrue(all(x in video.as_dict()['next_video'] for x in keys_videosignature))
+
+        for video in video.as_dict()['related_videos']:
+            self.assertTrue(all(x in video for x in keys_videosignature))

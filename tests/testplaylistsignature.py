@@ -29,3 +29,17 @@ class YoutubePlaylistSignatureTest(unittest.TestCase):
         self.assertEqual(signature.thumbnail, 'thumb')
         self.assertEqual(signature.name, 'name')
         self.assertEqual(signature.first_video_id, 'nVjsGKrE6E8')
+
+    def test_as_dict(self):
+        signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
+                                'name', 11, 'author', 'thumb', 'nVjsGKrE6E8')
+        self.assertEqual(signature.as_dict(), {
+                'id': 'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
+                'name': 'name',
+                'author': 'author',
+                'first_video_url': signature.first_video_url,
+                'first_video_id': 'nVjsGKrE6E8',
+                'length': 11,
+                'url': signature.url,
+                'thumbnail': signature.thumbnail
+        })

@@ -17,3 +17,14 @@ class YoutubeChannelSignatureTest(unittest.TestCase):
         self.assertEqual(signature.subscriptions, 3555)
         self.assertEqual(signature.thumbnail, 'thumb')
         self.assertEqual(signature.name, 'name')
+
+    def test_as_dict(self):
+        signature = ChannelSignature('UCAw23LRxypuNn0ilUu1o1Cw', 'name', 11, 3555, 'thumb')
+        self.assertEqual(signature.as_dict(), {
+                'id': 'UCAw23LRxypuNn0ilUu1o1Cw',
+                'name': 'name',
+                'videos_amount': 11,
+                'subscriptions': 3555,
+                'url': 'https://www.youtube.com/channel/UCAw23LRxypuNn0ilUu1o1Cw',
+                'thumbnail': 'thumb'
+        })
