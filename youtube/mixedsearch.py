@@ -8,6 +8,8 @@ class MixedSearch(BaseSearch):
 
     def search(self, search_string):
         page_source = self._get_page_content(self._make_search_url(search_string))
-        return (ChannelSearchParser().parse(page_source) +
-                PlaylistSearchParser().parse(page_source) +
-                VideoSearchParser().parse(page_source))
+        return {
+                'videos': VideoSearchParser().parse(page_source),
+                'playlists': PlaylistSearchParser().parse(page_source),
+                'channels': ChannelSearchParser().parse(page_source),
+        }

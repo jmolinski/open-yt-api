@@ -31,7 +31,7 @@ The main API class is YoutubeApi, which consists of 7 methods:
 ```
 constructor(http_fetcher=None, nocache=False, global_cache=False)
 
-search(search_string: str) -> Tuple of VideoSignature, ChannelSignature and PlaylistSignature
+search(search_string: str) -> Dict of VideoSignature, ChannelSignature and PlaylistSignature
 search_videos(search_string: str) -> Tuple of VideoSignature
 search_channels(search_string: str) -> Tuple of ChannelSignature
 search_playlists(search_string: str) -> Tuple of PlaylistSignature
@@ -45,6 +45,15 @@ Object passed as http_fetcher is used to fetch page source - it has to implement
 ```python
 class Fetcher():
     def fetch_page(self, url): pass  # returns utf-8 decoded page source
+```
+
+YoutubeApi.search returns result in such format:
+```python
+{
+  'videos': Tuple of found VideoSignature,
+  'playlists': Tuple of found PlaylistSignature,
+  'channels': Tuple of found ChannelSignature
+}
 ```
 It's probably best to just let the YoutubeApi use it's default http_fetcher - the one that works just fine.
 Important note: if you want to supply your own http_fetcher which doesn't make real http calls, it's best to set nocache to True.
