@@ -1,5 +1,6 @@
 from youtube.baseparser import BaseParser
-from youtube.videosignature import VideoSignature
+from youtube.signatures import VideoSignature
+
 
 class VideoPageParser(BaseParser):
     def get_next_video(self, page_html):

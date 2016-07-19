@@ -1,14 +1,14 @@
+from youtube.cache import YoutubeGlobalCache, YoutubeLocalCache
+from youtube.errors import YoutubeApiSearchTargetError
 from youtube.http_fetcher import UrllibPageFetcher
-from youtube.mixedsearch import MixedSearch
-from youtube.videosearch import VideoSearch
-from youtube.channelsearch import ChannelSearch
-from youtube.playlistsearch import PlaylistSearch
-from youtube.video import YoutubeVideo
 from youtube.playlist import YoutubePlaylist
-from youtube.cache import YoutubeLocalCache, YoutubeGlobalCache
-from youtube.tools import search_wrapper, get_object_wrapper
+from youtube.search import (ChannelSearch, MixedSearch, PlaylistSearch,
+                            VideoSearch)
+from youtube.tools import get_object_wrapper, search_wrapper
+from youtube.video import YoutubeVideo
 
 __all__ = ['YoutubeApi']
+
 
 class YoutubeApi():
     _http_fetcher = None
@@ -19,8 +19,20 @@ class YoutubeApi():
         self._http_fetcher = http_fetcher if http_fetcher is not None else UrllibPageFetcher()
         self._nocache = nocache
         self._cache = YoutubeGlobalCache() if global_cache else YoutubeLocalCache()
+        self._search_handlers = {
+            'mixed': self._mixed_search,
+            'videos': self.search_videos,
+            'playlists': self.search_playlists,
+            'channels': self.search_channels
+        }
 
-    def search(self, search_string):
+    def search(self, search_string, target='mixed'):
+        try:
+            return self._search_handlers[target](search_string)
+        except KeyError:
+            raise YoutubeApiSearchTargetError
+
+    def _mixed_search(self, search_string):
         return search_wrapper('MixedSearch', search_string, self._cache, self._nocache,
                               lambda: MixedSearch(self._http_fetcher).search(search_string))
 

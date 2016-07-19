@@ -1,5 +1,6 @@
 from youtube.baseparser import BaseSearchParser
-from youtube.channelsignature import ChannelSignature
+from youtube.signatures import ChannelSignature
+
 
 class ChannelSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-channel'

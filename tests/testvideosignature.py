@@ -1,5 +1,7 @@
 import unittest
-from youtube.videosignature import VideoSignature
+
+from youtube.signatures import VideoSignature
+
 
 class YoutubeVideoSignatureTest(unittest.TestCase):
     def test_videosignature_constructor(self):
