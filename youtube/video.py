@@ -30,7 +30,7 @@ class YoutubeVideo(BaseElement):
     @property
     def length_in_seconds(self):
         time = self._signature.length.split(":")[::-1]
-        [secs, mins, hrs, *__] = time + ['0', '0', '0'] # noqa
+        [secs, mins, hrs, *__] = time + ['0', '0', '0']  # noqa
         hrs, mins, secs = int(hrs), int(mins), int(secs)
         return 3600 * hrs + 60 * mins + secs
 

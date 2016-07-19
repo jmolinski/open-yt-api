@@ -10,14 +10,14 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         # actual http request and parsing
         start = timer()
-        videos = api.search('Lana')
-        videos = api.search('Lana del rey')
+        api.search('Lana')
+        api.search('Lana del rey')
         time1 = timer() - start
 
         # get cached version
         start = timer()
-        videos = api.search('Lana')
-        videos = api.search('Lana del rey')
+        api.search('Lana')
+        api.search('Lana del rey')
         time2 = timer() - start
 
         # cached should be at least 1000 times faster
@@ -40,12 +40,12 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         # actual http request and parsing
         start = timer()
-        videos = api.search('Lana del rey')
+        api.search('Lana del rey')
         time1 = timer() - start
 
         # get cached version
         start = timer()
-        videos = api.search('Lana del rey')
+        api.search('Lana del rey')
         time2 = timer() - start
 
         # clear cache
@@ -53,7 +53,7 @@ class YoutubeApiTestCache(unittest.TestCase):
 
         # actual http request and parsing again
         start = timer()
-        videos = api.search('Lana del rey')
+        api.search('Lana del rey')
         time3 = timer() - start
 
         self.assertTrue(min(time1, time3) > time2 * 1000)
@@ -62,13 +62,13 @@ class YoutubeApiTestCache(unittest.TestCase):
         api = YoutubeApi()
 
         start = timer()
-        video = api.get_video('nVjsGKrE6E8')
-        playlist = api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+        api.get_video('nVjsGKrE6E8')
+        api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         time1 = timer() - start
 
         start = timer()
-        video = api.get_video('nVjsGKrE6E8')
-        playlist = api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+        api.get_video('nVjsGKrE6E8')
+        api.get_playlist('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         time2 = timer() - start
 
         self.assertTrue(time1 > time2 * 1000)
@@ -86,11 +86,11 @@ class YoutubeApiTestCache(unittest.TestCase):
         api_2 = YoutubeApi(global_cache=True)
 
         start = timer()
-        video = api_1.get_video('nVjsGKrE6E8')
+        api_1.get_video('nVjsGKrE6E8')
         time1 = timer() - start
 
         start = timer()
-        video = api_2.get_video('nVjsGKrE6E8')
+        api_2.get_video('nVjsGKrE6E8')
         time2 = timer() - start
 
         self.assertTrue(time1 > time2 * 1000)
@@ -101,13 +101,13 @@ class YoutubeApiTestCache(unittest.TestCase):
         api_2 = YoutubeApi(global_cache=True)
 
         start = timer()
-        video = api_1.get_video('nVjsGKrE6E8')
+        api_1.get_video('nVjsGKrE6E8')
         time1 = timer() - start
 
         api_2.clear_cache()
 
         start = timer()
-        video = api_1.get_video('nVjsGKrE6E8')
+        api_1.get_video('nVjsGKrE6E8')
         time2 = timer() - start
 
         # assert both are real http calls with parsing

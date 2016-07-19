@@ -16,6 +16,7 @@ def search_wrapper(search_type, search_string, cache, nocache, actual_search):
         cache.add_search_result(search_type, search_string, results)
         return results
 
+
 def get_object_wrapper(object_id, cache, nocache, actual_search):
     if nocache:
         return _exception_handling_wrapper(actual_search)
@@ -27,6 +28,7 @@ def get_object_wrapper(object_id, cache, nocache, actual_search):
         result = _exception_handling_wrapper(actual_search)  # executes lambda
         cache.add_object(object_id, result)
         return result
+
 
 # if there was an random exception caused by eg. damaged html - repeat query
 def _exception_handling_wrapper(search_function, *, max_tries=5):

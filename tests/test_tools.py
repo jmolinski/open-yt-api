@@ -10,13 +10,16 @@ class FakeFetcher():
         self._index += 1
         return self._page_source[self._index % 2]
 
+
 class ExceptionRaisingFetcher():
     def fetch_page(self, url):
         raise CouldntFetchContentError()
 
+
 class FakeSignature():
     def get_url(self):
-        return 'https://www.' # invalid url
+        return 'https://www.'  # invalid url
+
 
 def read_in_file(filepath):
     f = open(filepath, 'r')

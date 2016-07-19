@@ -21,7 +21,7 @@ class YoutubeApiPlaylistSearchTest(unittest.TestCase):
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
                                       'Lana Del Rey - All songs playlist',
                                       119, 'juluatanaya',
-                            'https://i.ytimg.com/vi/nVjsGKrE6E8/mqdefault.jpg',
+                                      'https://i.ytimg.com/vi/nVjsGKrE6E8/mqdefault.jpg',
                                       'nVjsGKrE6E8')
 
         self.assertTrue(signature in found_playlists)

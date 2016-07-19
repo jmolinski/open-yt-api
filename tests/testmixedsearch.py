@@ -3,8 +3,6 @@ import unittest
 from test_tools import ExceptionRaisingFetcher, FakeFetcher, read_in_file
 from youtube.api import YoutubeApi
 from youtube.errors import YoutubeApiConnectionError
-from youtube.signatures import (ChannelSignature, PlaylistSignature,
-                                VideoSignature)
 
 
 class YoutubeApiVideoSearchTest(unittest.TestCase):

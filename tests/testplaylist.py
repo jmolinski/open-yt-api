@@ -1,8 +1,8 @@
 import unittest
 
-from test_tools import ExceptionRaisingFetcher, FakeFetcher, read_in_file
+from test_tools import FakeFetcher, read_in_file
 from youtube.api import YoutubeApi
-from youtube.errors import YoutubeApiConnectionError, YoutubeInvalidIdError
+from youtube.errors import YoutubeInvalidIdError
 from youtube.signatures import VideoSignature
 
 

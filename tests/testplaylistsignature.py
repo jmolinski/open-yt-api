@@ -11,21 +11,21 @@ class YoutubePlaylistSignatureTest(unittest.TestCase):
     def test_get_playlist_url(self):
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi', ' ', 0, ' ', ' ', ' ')
         self.assertEqual(signature.url,
-                                    'https://www.youtube.com/playlist?' +
-                                    'list=PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+                         'https://www.youtube.com/playlist?' +
+                         'list=PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
 
     def test_get_first_video_url(self):
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
-                                    ' ', 0, ' ', ' ', 'nVjsGKrE6E8')
+                                      ' ', 0, ' ', ' ', 'nVjsGKrE6E8')
         self.assertEqual(signature.first_video_url,
-                        'https://www.youtube.com/watch?v=' +
-                        'nVjsGKrE6E8&list=PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+                         'https://www.youtube.com/watch?v=' +
+                         'nVjsGKrE6E8&list=PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
 
     def test_getters(self):
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
-                                'name', 11, 'author', 'thumb', 'nVjsGKrE6E8')
+                                      'name', 11, 'author', 'thumb', 'nVjsGKrE6E8')
         self.assertEqual(signature.playlist_id,
-                                        'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
+                         'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi')
         self.assertEqual(signature.length, 11)
         self.assertEqual(signature.author, 'author')
         self.assertEqual(signature.thumbnail, 'thumb')
@@ -34,7 +34,7 @@ class YoutubePlaylistSignatureTest(unittest.TestCase):
 
     def test_as_dict(self):
         signature = PlaylistSignature('PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
-                                'name', 11, 'author', 'thumb', 'nVjsGKrE6E8')
+                                      'name', 11, 'author', 'thumb', 'nVjsGKrE6E8')
         self.assertEqual(signature.as_dict(), {
                 'id': 'PLLUYFDT7vPkqBZQsTGBpGCjIoePETnOxi',
                 'name': 'name',

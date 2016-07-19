@@ -19,9 +19,9 @@ class YoutubeApiChannelSearchTest(unittest.TestCase):
             self.assertIsInstance(channel, ChannelSignature)
 
         signature = ChannelSignature('UC3N5y6UWKJaKqoU2b_0MfTQ',
-                                    'LanaDelReyVEVO', 31, 3947232,
-                    'https://yt3.ggpht.com/-JXK6ocQ08J8/AAAAAAAAAAI/' +
-                    'AAAAAAAAAAA/aGPAhXfQpMw/s176-c-k-no/photo.jpg')
+                                     'LanaDelReyVEVO', 31, 3947232,
+                                     'https://yt3.ggpht.com/-JXK6ocQ08J8/AAAAAAAAAAI/' +
+                                     'AAAAAAAAAAA/aGPAhXfQpMw/s176-c-k-no/photo.jpg')
 
         self.assertTrue(signature in found_channels)
         invalid_signature = ChannelSignature(' ', ' ', 0, 0, ' ')

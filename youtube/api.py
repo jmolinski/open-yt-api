@@ -9,6 +9,7 @@ from youtube.video import YoutubeVideo
 
 __all__ = ['YoutubeApi']
 
+
 class YoutubeApi():
     _http_fetcher = None
     _nocache = None
