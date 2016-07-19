@@ -1,4 +1,3 @@
-
 class _YoutubeCache():
     def get_search_result(self, search_type, query):
         try:

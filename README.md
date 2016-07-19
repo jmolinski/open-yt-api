@@ -31,15 +31,16 @@ The main API class is YoutubeApi, which consists of 7 methods:
 ```
 constructor(http_fetcher=None, nocache=False, global_cache=False)
 
-search(search_string: str) -> Dict of VideoSignature, ChannelSignature and PlaylistSignature
+search(search_string: str, target='mixed': str) -> default target: Dict of VideoSignature, ChannelSignature and PlaylistSignature
 search_videos(search_string: str) -> Tuple of VideoSignature
 search_channels(search_string: str) -> Tuple of ChannelSignature
 search_playlists(search_string: str) -> Tuple of PlaylistSignature
 get_video(video_id: str) -> YoutubeVideo object
-get_playlist(playlist_id: str) -> YoutubeChannel object
-get_channel(channel_id: str) -> YoutubePlaylist object
+get_playlist(playlist_id: str) -> YoutubePlaylist object
 clear_cache() -> None
 ```
+Youtube.search is a generic search, you can specify target using `target` argument (available: mixed, videos, channels, playlists).
+`Youtube.search('query', target='videos')` is a synonym of `Youtube.search_videos('query')`.
 YoutubeApi constructor takes 3 optional, keyword-only arguments: http_fetcher, nocache flag and global_cache flag.
 Object passed as http_fetcher is used to fetch page source - it has to implement such an interface:
 ```python
@@ -47,7 +48,7 @@ class Fetcher():
     def fetch_page(self, url): pass  # returns utf-8 decoded page source
 ```
 
-YoutubeApi.search returns result in such format:
+YoutubeApi.search with default target ('mixed') returns result in such format:
 ```python
 {
   'videos': Tuple of found VideoSignature,
