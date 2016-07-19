@@ -1,8 +1,5 @@
 from youtube.http_fetcher import UrllibPageFetcher
-from youtube.mixedsearch import MixedSearch
-from youtube.videosearch import VideoSearch
-from youtube.channelsearch import ChannelSearch
-from youtube.playlistsearch import PlaylistSearch
+from youtube.search import MixedSearch, VideoSearch, ChannelSearch, PlaylistSearch
 from youtube.video import YoutubeVideo
 from youtube.playlist import YoutubePlaylist
 from youtube.cache import YoutubeLocalCache, YoutubeGlobalCache
