@@ -1,8 +1,10 @@
 import urllib.request
 import urllib.error
 
+
 class CouldntFetchContentError(Exception):
     pass
+
 
 class UrllibPageFetcher():
     def fetch_page(self, url, *, tries_left=3):

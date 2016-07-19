@@ -1,6 +1,6 @@
 import unittest
 from youtube.api import YoutubeApi
-from youtube.videosignature import VideoSignature
+from youtube.signatures import VideoSignature
 from youtube.errors import YoutubeApiConnectionError
 from test_tools import FakeFetcher, ExceptionRaisingFetcher, read_in_file
 

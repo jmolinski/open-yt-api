@@ -1,5 +1,5 @@
 import unittest
-from youtube.playlistsignature import PlaylistSignature
+from youtube.signatures import PlaylistSignature
 
 class YoutubePlaylistSignatureTest(unittest.TestCase):
     def test_playlistsignature_constructor(self):
