@@ -1,8 +1,9 @@
 import urllib.parse
-from youtube.errors import YoutubeApiConnectionError
-from youtube.videosearchparser import VideoSearchParser
-from youtube.playlistsearchparser import PlaylistSearchParser
+
 from youtube.channelsearchparser import ChannelSearchParser
+from youtube.errors import YoutubeApiConnectionError
+from youtube.playlistsearchparser import PlaylistSearchParser
+from youtube.videosearchparser import VideoSearchParser
 
 
 class BaseSearch():

@@ -1,8 +1,10 @@
 import unittest
+
+from test_tools import ExceptionRaisingFetcher, FakeFetcher, read_in_file
 from youtube.api import YoutubeApi
-from youtube.signatures import VideoSignature
 from youtube.errors import YoutubeApiConnectionError
-from test_tools import FakeFetcher, ExceptionRaisingFetcher, read_in_file
+from youtube.signatures import VideoSignature
+
 
 class YoutubeApiVideoSearchTest(unittest.TestCase):
     def test_search_no_results(self):

@@ -1,5 +1,6 @@
 from youtube.http_fetcher import CouldntFetchContentError
 
+
 class FakeFetcher():
     def __init__(self, page_source, page_source2=None):
         self._page_source = [page_source, page_source if page_source2 is None else page_source2]

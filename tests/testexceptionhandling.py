@@ -1,6 +1,7 @@
 import unittest
-from youtube.api import YoutubeApi
+
 from test_tools import FakeFetcher
+from youtube.api import YoutubeApi
 from youtube.errors import YoutubeApiRandomException
 
 

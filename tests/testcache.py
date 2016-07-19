@@ -1,6 +1,8 @@
 import unittest
 from timeit import default_timer as timer
+
 from youtube.api import YoutubeApi
+
 
 class YoutubeApiTestCache(unittest.TestCase):
     def test_search_cache_time(self):

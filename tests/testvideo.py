@@ -1,8 +1,9 @@
 import unittest
+
+from test_tools import ExceptionRaisingFetcher, FakeFetcher, read_in_file
 from youtube.api import YoutubeApi
+from youtube.errors import YoutubeApiConnectionError, YoutubeInvalidIdError
 from youtube.signatures import VideoSignature
-from youtube.errors import YoutubeInvalidIdError, YoutubeApiConnectionError
-from test_tools import FakeFetcher, read_in_file, ExceptionRaisingFetcher
 
 
 class YoutubeApiGetVideoTest(unittest.TestCase):

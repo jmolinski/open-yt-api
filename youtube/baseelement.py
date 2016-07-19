@@ -1,5 +1,6 @@
 from youtube.errors import YoutubeApiConnectionError, YoutubeInvalidIdError
 
+
 class BaseElement():
     _http_fetcher = None
     _signature = None

@@ -1,7 +1,9 @@
 import unittest
+
+from test_tools import FakeFetcher, read_in_file
 from youtube.api import YoutubeApi
 from youtube.signatures import PlaylistSignature
-from test_tools import FakeFetcher, read_in_file
+
 
 class YoutubeApiPlaylistSearchTest(unittest.TestCase):
     def test_search_no_results(self):

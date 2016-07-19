@@ -1,6 +1,7 @@
 from youtube.baseparser import BaseSearchParser
 from youtube.signatures import PlaylistSignature
 
+
 class PlaylistSearchParser(BaseSearchParser):
     _tile_class_name = 'yt-lockup-playlist'
 

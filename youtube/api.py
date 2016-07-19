@@ -1,10 +1,11 @@
-from youtube.http_fetcher import UrllibPageFetcher
-from youtube.search import MixedSearch, VideoSearch, ChannelSearch, PlaylistSearch
-from youtube.video import YoutubeVideo
-from youtube.playlist import YoutubePlaylist
-from youtube.cache import YoutubeLocalCache, YoutubeGlobalCache
-from youtube.tools import search_wrapper, get_object_wrapper
+from youtube.cache import YoutubeGlobalCache, YoutubeLocalCache
 from youtube.errors import YoutubeApiSearchTargetError
+from youtube.http_fetcher import UrllibPageFetcher
+from youtube.playlist import YoutubePlaylist
+from youtube.search import (ChannelSearch, MixedSearch, PlaylistSearch,
+                            VideoSearch)
+from youtube.tools import get_object_wrapper, search_wrapper
+from youtube.video import YoutubeVideo
 
 __all__ = ['YoutubeApi']
 
