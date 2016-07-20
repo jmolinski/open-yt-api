@@ -15,7 +15,7 @@ class VideoPageParser(BaseParser):
         return VideoSignature(self._extract_id_next_video(),
                               self._extract_title_next_video(),
                               self._extract_author_next_video(),
-                              int(self._extract_views_next_video()),
+                              self._extract_views_next_video(),
                               self._extract_length_next_video())
 
     def _extract_id_next_video(self):
@@ -31,9 +31,9 @@ class VideoPageParser(BaseParser):
     def _extract_views_next_video(self):
         try:
             views = self._remove_non_breaking_spaces(self._find_by_class('span', 'view-count').string.split(' ')[0])
-            return views.replace(',', '').replace('.', '')
-        except AttributeError:  # AttributeError: 'NoneType' object has no attribute 'split'
-            return '0'
+            return int(views.replace(',', '').replace('.', ''))
+        except (AttributeError, ValueError):  # AttributeError: 'NoneType' object has no attribute 'split'
+            return 0
 
     def _extract_length_next_video(self):
         return str(self._find_by_class('span', 'video-time').string).strip()

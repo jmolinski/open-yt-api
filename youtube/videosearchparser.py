@@ -8,7 +8,7 @@ class VideoSearchParser(BaseSearchParser):
     def _parse_single_result(self, search_result):
         self._initialize_parser(repr(search_result))
         return VideoSignature(self._extract_id(), self._extract_title(),
-                              self._extract_author(), int(self._extract_views()),
+                              self._extract_author(), self._extract_views(),
                               self._extract_length())
 
     def _extract_length(self):
@@ -27,4 +27,8 @@ class VideoSearchParser(BaseSearchParser):
         views_ul = self._find_by_class('ul', 'yt-lockup-meta-info')
         li_lst = views_ul.find_all('li')
         rmnbs = self._remove_non_breaking_spaces
-        return rmnbs(li_lst[1].string.split(' ')[0]).replace(',', '') if len(li_lst) > 1 else '0'
+        views = rmnbs(li_lst[1].string.split(' ')[0]).replace(',', '') if len(li_lst) > 1 else '0'
+        try:
+            return int(views)
+        except ValueError:
+            return 0
