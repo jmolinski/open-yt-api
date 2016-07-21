@@ -17,7 +17,7 @@ pip install openytapi
 Usage example
 --------------------
 ```python
-from youtube.api import YoutubeApi
+from youtube import YoutubeApi
 
 videos = YoutubeApi().search_videos('lana del rey')
 
@@ -61,6 +61,14 @@ Important note: if you want to supply your own http_fetcher which doesn't make r
 If nocache is set to True no cache is used at all. If nocache is set to False or omitted cache is used.
 If global_cache is set to True global cache (shared among all YoutubeApi instances with global_cache set to True) is used.
 If global_cache is set to False or omitted local cache (available just to this one particular YoutubeApi instance) is used.
+
+You can import this class in 4 ways:
+```python
+import youtube  # -> youtube.YoutubeApi
+import youtube.api  # -> youtube.api.YoutubeApi
+from youtube import YoutubeApi  # -> YoutubeApi
+from youtube.api import YoutubeAPi  # -> YoutubeApi
+```
 
 ---
 

@@ -27,6 +27,24 @@ class BaseSearch():
     def _get_raw(self, search_string):
         return self._get_page_content(self._make_search_url(search_string))
 
+    def search(self, search_string):
+        return self._parser().parse(self._get_raw(search_string))
+
+
+class VideoSearch(BaseSearch):
+    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAQ%253D%253D&q='
+    _parser = VideoSearchParser
+
+
+class PlaylistSearch(BaseSearch):
+    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAw%253D%253D&q='
+    _parser = PlaylistSearchParser
+
+
+class ChannelSearch(BaseSearch):
+    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAg%253D%253D&q='
+    _parser = ChannelSearchParser
+
 
 class MixedSearch(BaseSearch):
     _base_search_url = 'https://www.youtube.com/results?search_query='
@@ -38,24 +56,3 @@ class MixedSearch(BaseSearch):
                 'playlists': PlaylistSearchParser().parse(page_source),
                 'channels': ChannelSearchParser().parse(page_source),
         }
-
-
-class VideoSearch(BaseSearch):
-    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAQ%253D%253D&q='
-
-    def search(self, search_string):
-        return VideoSearchParser().parse(self._get_raw(search_string))
-
-
-class PlaylistSearch(BaseSearch):
-    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAw%253D%253D&q='
-
-    def search(self, search_string):
-        return PlaylistSearchParser().parse(self._get_raw(search_string))
-
-
-class ChannelSearch(BaseSearch):
-    _base_search_url = 'https://www.youtube.com/results?sp=EgIQAg%253D%253D&q='
-
-    def search(self, search_string):
-        return ChannelSearchParser().parse(self._get_raw(search_string))

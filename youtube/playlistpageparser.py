@@ -42,8 +42,11 @@ class PlaylistPageParser(BaseParser):
                               int(self._extract_views()),
                               self._extract_length())
 
-    def _extract_length(self):
-        return str(self._find_by_class('div', 'timestamp').span.string)
+    def _extract_length(self):  # TODO youtube playlist changed layout
+        try:
+            return str(self._find_by_class('div', 'timestamp').span.string)
+        except:
+            return '0:00'
 
     def _extract_title(self):
         return self._html_parser.tr['data-title']
@@ -52,7 +55,10 @@ class PlaylistPageParser(BaseParser):
         return self._html_parser.tr['data-video-id']
 
     def _extract_author(self):
-        return self._html_parser.select('.pl-video-owner a')[0]['href'].split('/')[2]
+        try:
+            return self._html_parser.select('.pl-video-owner a')[0]['href'].split('/')[2]
+        except IndexError:
+            return ''
 
     # TODO remove this method
     def _extract_views(self):  # views amount data is not present on the page

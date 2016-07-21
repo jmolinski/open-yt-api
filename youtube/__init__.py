@@ -1,2 +1,5 @@
 __author__ = 'glenpl'
-__all__ = ['api']
+
+from .api import *
+
+__all__ = [api.__all__]
