@@ -1,6 +1,6 @@
 from youtube.cache import YoutubeGlobalCache, YoutubeLocalCache
 from youtube.errors import YoutubeApiSearchTargetError
-from youtube.http_fetcher import UrllibPageFetcher
+from youtube.http_fetcher import DefaultFetcher
 from youtube.playlist import YoutubePlaylist
 from youtube.search import (ChannelSearch, MixedSearch, PlaylistSearch,
                             VideoSearch)
@@ -16,7 +16,7 @@ class YoutubeApi():
     _cache = None
 
     def __init__(self, *, http_fetcher=None, nocache=False, global_cache=False):
-        self._http_fetcher = http_fetcher if http_fetcher is not None else UrllibPageFetcher()
+        self._http_fetcher = http_fetcher if http_fetcher is not None else DefaultFetcher()
         self._nocache = nocache
         self._cache = YoutubeGlobalCache() if global_cache else YoutubeLocalCache()
         self._search_handlers = {

@@ -6,10 +6,10 @@ HERE = path.abspath(path.dirname(__file__))
 
 setup(
     name='openytapi',
-    version='2.4.0',
+    version='2.4.1',
     description='Open YouTube API library',
     url='https://github.com/Glenpl/openytapi',
-    download_url='https://github.com/Glenpl/openytapi/tarball/2.4.0',
+    download_url='https://github.com/Glenpl/openytapi/tarball/2.4.1',
     author='Glenpl/Jakub Molinski',
     author_email='kubamolinski@gmail.com',
     license='MIT',

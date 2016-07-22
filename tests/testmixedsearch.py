@@ -24,9 +24,9 @@ class YoutubeApiVideoSearchTest(unittest.TestCase):
     def test_real_search(self):
         found_items = YoutubeApi(nocache=True).search('lana del rey')
         length = len(found_items['videos'] + found_items['playlists'] + found_items['channels'])
-        self.assertEqual(length, 20)
+        self.assertTrue(22 >= length >= 18)
         self.assertTrue(len(found_items['videos']) >= 15)
-        self.assertTrue(len(found_items['playlists']) >= 1)
+        self.assertTrue(5 >= len(found_items['playlists']) >= 0)
         self.assertTrue(len(found_items['channels']) >= 1)
 
     def test_real_search_no_results(self):

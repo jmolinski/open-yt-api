@@ -52,7 +52,7 @@ class MixedSearch(BaseSearch):
     def search(self, search_string):
         page_source = self._get_raw(search_string)
         return {
-                'videos': VideoSearchParser().parse(page_source),
-                'playlists': PlaylistSearchParser().parse(page_source),
-                'channels': ChannelSearchParser().parse(page_source),
+            'videos': VideoSearchParser().parse(page_source),
+            'playlists': PlaylistSearchParser().parse(page_source),
+            'channels': ChannelSearchParser().parse(page_source),
         }

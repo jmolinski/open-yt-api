@@ -1,10 +1,10 @@
 import unittest
 
-from youtube.http_fetcher import CouldntFetchContentError, UrllibPageFetcher
+from youtube.http_fetcher import CouldntFetchContentError, DefaultFetcher
 
 
 class HttpFetcherTest(unittest.TestCase):
-    _fetcher = UrllibPageFetcher()
+    _fetcher = DefaultFetcher()
 
     def test_real_fetch_page(self):
         url = 'https://www.youtube.com/watch?v=vksfnZaZ0A4'
