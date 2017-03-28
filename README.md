@@ -6,7 +6,8 @@
 This is an open YouTube API library.
 It might be slow because it scrapes and parses actual YouTube HTMLs.
 
-The library is still under development and there may be significant differences between versions.
+The library may be considered stable.
+The channels api used to be available in former releases, but it turned out that the page layout is being modified quite often and despite being able to keep up to the pace it would be too unstable for the api consumers.
 
 Installation
 --------------------
@@ -72,7 +73,8 @@ from youtube.api import YoutubeAPi  # -> YoutubeApi
 
 ---
 
-#####VideoSignature
+VideoSignature
+
 It's a hashable value object.
 May throw exceptions during construction.
 All fields are immutable.
@@ -89,7 +91,8 @@ as_dict() -> dict
 
 ---
 
-#####ChannelSignature
+ChannelSignature
+
 It's a hashable value object.
 May throw exceptions during construction.
 All fields are immutable.
@@ -105,7 +108,8 @@ as_dict() -> dict
 
 ---
 
-#####PlaylistSignature
+PlaylistSignature
+
 It's a hashable value object.
 May throw exceptions during construction.
 All fields are immutable.
@@ -123,7 +127,8 @@ as_dict() -> dict
 
 ---
 
-#####YoutubeVideo
+YoutubeVideo
+
 It's a hashable value object.
 May throw exceptions during construction.
 All fields are immutable.
@@ -143,7 +148,8 @@ as_dict() -> dict
 
 ---
 
-#####YoutubePlaylist
+YoutubePlaylist
+
 It's a hashable value object.
 May throw exceptions during construction.
 All fields are immutable.
